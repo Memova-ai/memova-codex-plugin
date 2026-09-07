@@ -35,6 +35,10 @@ system Terminal/PowerShell outside the Codex task. For
 `login_completed_client_refresh_required`, say OAuth succeeded, do not ask the user to log in again,
 and require a full Codex restart plus a new task. Never start a second automatic OAuth attempt.
 
+Treat Agent Archive as a Codex/Mac beta. The default mode is `explicit_only`. Do not claim that an
+archive is visible, restorable, movable, or converged in the iOS app until the corresponding iOS
+capability is released and the MCP status/receipt proves that surface completed.
+
 ## Fixed archive scope
 
 Eligible Codex outputs are only final, user-facing Markdown, HTML, plain-text reports, or design

@@ -24,6 +24,14 @@ contract, and represented by one stable file/Knowledge Object identity. Preferen
 explicit-only, ask-each-time, and always-auto-save modes. Scheduled tasks inspect only exact paths
 in the Plugin-owned authorized manifest; they never scan repositories or Codex history. V4 setup
 and repair consume the backend-provided setup operations and do not duplicate the LLM Wiki tree.
+Agent Archive launches as a Codex/Mac beta with `explicit_only` as the default. This release does
+not promise iOS browsing, cloud-only restore, in-app Project moves, offline recovery, or two-device
+iCloud convergence; those capabilities remain gated on the iOS Phase 6 implementation and QA.
+
+Version `1.9.7` standardizes the canonical public installation source as
+`Memova-ai/memova-codex-plugin` and documents the natural-language setup request that installs or
+updates the Plugin, connects Memova, and completes the sign-in needed for Personal Manual
+generation. This release does not change the Personal Manual workflow or MCP contract.
 
 Version `1.9.6` makes the two-prompt Personal Manual path capability-driven while preserving
 private client-generated artifact upload. The Skill proves authenticated scope and revision
@@ -100,13 +108,13 @@ For normal beta users, yes: make this repository public, or put it somewhere eve
 Codex installs third-party plugins by reading a Git marketplace source. A public GitHub repo is the simplest path because this command works without extra GitHub setup:
 
 ```bash
-codex plugin marketplace add gxyfred/memova-codex-plugin
+codex plugin marketplace add Memova-ai/memova-codex-plugin
 ```
 
 A private repo can also work for internal testing, but every user must have GitHub access to the repo and working Git credentials on the machine where Codex runs. For private repos, an SSH URL is often easier after the user has GitHub SSH access configured:
 
 ```bash
-codex plugin marketplace add git@github.com:gxyfred/memova-codex-plugin.git
+codex plugin marketplace add git@github.com:Memova-ai/memova-codex-plugin.git
 ```
 
 This repo does not contain Memova user data or OAuth tokens.
@@ -134,10 +142,17 @@ ready. Existing V2/V3 tools remain present during the staged transition; V5 does
 
 ## Quick Start
 
-From Codex CLI, add the marketplace source, then install the Memova plugin from that marketplace:
+From a Codex task, use this standard setup request:
+
+```text
+Please install or update the Memova Plugin to the latest version from Memova-ai/memova-codex-plugin, connect it, and complete the sign-in required to generate my Personal Manual. If I need to restart Codex or start a new task, please let me know.
+```
+
+For manual CLI installation, add the marketplace source, then install the Memova plugin from that
+marketplace:
 
 ```bash
-codex plugin marketplace add gxyfred/memova-codex-plugin
+codex plugin marketplace add Memova-ai/memova-codex-plugin
 codex plugin add memova@memova-codex-plugin
 ```
 
@@ -607,26 +622,26 @@ local cache.
 
 ## Troubleshooting
 
-If `codex plugin marketplace add gxyfred/memova-codex-plugin` fails:
+If `codex plugin marketplace add Memova-ai/memova-codex-plugin` fails:
 
 - Confirm the repo is public, or confirm your GitHub credentials can clone it.
 - Try the full HTTPS URL:
 
 ```bash
-codex plugin marketplace add https://github.com/gxyfred/memova-codex-plugin.git
+codex plugin marketplace add https://github.com/Memova-ai/memova-codex-plugin.git
 ```
 
 - For private access, try the SSH URL after configuring GitHub SSH:
 
 ```bash
-codex plugin marketplace add git@github.com:gxyfred/memova-codex-plugin.git
+codex plugin marketplace add git@github.com:Memova-ai/memova-codex-plugin.git
 ```
 
 If `@memova` does not appear:
 
 - Restart Codex after installing the plugin.
 - Confirm both install steps completed:
-  `codex plugin marketplace add gxyfred/memova-codex-plugin` and
+  `codex plugin marketplace add Memova-ai/memova-codex-plugin` and
   `codex plugin add memova@memova-codex-plugin`.
 - Open `/plugins` and confirm `Memova` is installed and enabled.
 - Start a new thread after installation.

@@ -7,7 +7,7 @@
     "url": "https://memova.ai"
   },
   "homepage": "https://memova.ai",
-  "repository": "https://github.com/gxyfred/memova-codex-plugin",
+  "repository": "https://github.com/Memova-ai/memova-codex-plugin",
   "license": "UNLICENSED",
   "keywords": [
     "memova",
@@ -27,7 +27,7 @@
   "interface": {
     "displayName": "Memova",
     "shortDescription": "Create a Personal Manual, use private knowledge, and archive Codex outputs.",
-    "longDescription": "Connect Codex to Memova through OAuth MCP for Personal Manual generation, bounded Knowledge V5 retrieval, reviewed first-class Knowledge Entry creation and revision, automation workflows, selected-content import, and consent-aware archiving of final Codex outputs into projects/Uncategorized. A request that authorizes Personal Manual publication under Memova's disclosed privacy practices analyzes up to 20 evidence items from the invoking Codex agent's native tasks and explicitly supplied user content, privately uploads derived Markdown, scoring and client-neutral aggregate evidence counts but no conversation content, and automatically publishes the final manual as a Memova Note.",
+    "longDescription": "Connect Codex to Memova through OAuth MCP for Personal Manual generation, bounded Knowledge V5 retrieval, reviewed first-class Knowledge Entry creation and revision, automation workflows, selected-content import, and consent-aware Codex/Mac beta archiving of final Codex outputs into projects/Uncategorized. The beta defaults to explicit-only archiving and does not require or promise the unfinished iOS sync experience. A request that authorizes Personal Manual publication under Memova's disclosed privacy practices analyzes up to 20 evidence items from the invoking Codex agent's native tasks and explicitly supplied user content, privately uploads derived Markdown, scoring and client-neutral aggregate evidence counts but no conversation content, and automatically publishes the final manual as a Memova Note.",
     "developerName": "Memova",
     "category": "Productivity",
     "capabilities": [

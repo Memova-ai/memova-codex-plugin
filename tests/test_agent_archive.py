@@ -15,7 +15,10 @@ SCRIPT = ROOT / "plugins" / "memova" / "scripts" / "agent_archive.py"
 
 class AgentArchiveTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.temp = tempfile.TemporaryDirectory()
+        # The product contract intentionally rejects outputs under tmp/temp paths.
+        # Keep allowed-output fixtures under the checked-out workspace so Linux's
+        # default /tmp directory does not turn positive cases into blocked-path cases.
+        self.temp = tempfile.TemporaryDirectory(prefix="agent-archive-test-", dir=ROOT)
         self.root = Path(self.temp.name)
         self.vault = self.root / "vault"
         self.vault.mkdir()
