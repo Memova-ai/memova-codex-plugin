@@ -1,0 +1,62 @@
+name: Plugin bounded multiplatform checks
+
+on:
+  push:
+    branches:
+      - main
+      - "codex/**"
+    paths:
+      - ".github/workflows/plugin-multiplatform.yml"
+      - "plugins/memova/**"
+      - "tests/**"
+      - "README.md"
+  pull_request:
+    paths:
+      - ".github/workflows/plugin-multiplatform.yml"
+      - "plugins/memova/**"
+      - "tests/**"
+      - "README.md"
+
+permissions:
+  contents: read
+
+jobs:
+  plugin-checks:
+    name: ${{ matrix.device_id }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            device_id: linux-plugin-full
+            test_profile: full
+          - os: windows-latest
+            device_id: windows-plugin-portability
+            test_profile: portability
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run bounded Plugin tests
+        shell: bash
+        env:
+          TEST_PROFILE: ${{ matrix.test_profile }}
+          SETUP_FIXTURE_CASES: "13"
+        run: |
+          if [ "$TEST_PROFILE" = "full" ]; then
+            python -c 'import os, unittest; count=unittest.defaultTestLoader.discover("tests").countTestCases()+int(os.environ["SETUP_FIXTURE_CASES"]); print(f"plugin_test_and_fixture_count={count}"); assert count <= 65'
+            python -m unittest discover -s tests -v
+          else
+            python -c 'import os, unittest; patterns=["test_agent_archive.py", "test_ensure_mcp_login.py"]; count=sum(unittest.defaultTestLoader.discover("tests", pattern=pattern).countTestCases() for pattern in patterns)+int(os.environ["SETUP_FIXTURE_CASES"]); print(f"plugin_portability_test_and_fixture_count={count}"); assert count <= 35'
+            for pattern in test_agent_archive.py test_ensure_mcp_login.py; do
+              python -m unittest discover -s tests -p "$pattern" -v
+            done
+          fi
+          python plugins/memova/skills/memova-vault-setup/scripts/setup_fixture_harness.py
+          python -m compileall -q plugins/memova tests
