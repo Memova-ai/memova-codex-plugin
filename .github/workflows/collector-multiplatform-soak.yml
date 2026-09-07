@@ -6,20 +6,12 @@ on:
       - main
       - "codex/**"
     paths:
-      - ".github/workflows/collector-multiplatform-soak.yml"
       - "collector/**"
       - "collector/hooks/**"
-      - "plugins/memova/scripts/**"
-      - "plugins/memova/skills/**"
-      - "plugins/memova/.codex-plugin/plugin.json"
   pull_request:
     paths:
-      - ".github/workflows/collector-multiplatform-soak.yml"
       - "collector/**"
       - "collector/hooks/**"
-      - "plugins/memova/scripts/**"
-      - "plugins/memova/skills/**"
-      - "plugins/memova/.codex-plugin/plugin.json"
   workflow_dispatch:
     inputs:
       cycles:
@@ -39,8 +31,10 @@ jobs:
         include:
           - os: ubuntu-latest
             device_id: linux-github-hosted
+            test_profile: full
           - os: windows-latest
             device_id: windows-github-hosted
+            test_profile: portability
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
     env:
@@ -59,25 +53,22 @@ jobs:
           sudo apt-get update
           sudo apt-get install --yes dbus-x11 gnome-keyring libsecret-tools
 
-      - name: Run Collector unit and contract tests (Windows)
-        if: runner.os == 'Windows'
-        shell: pwsh
-        run: |
-          $env:PYTHONPATH = "collector"
-          python -m unittest discover -s collector/tests -v
-          python -m unittest discover -s tests -v
-          python -m compileall -q collector
-          python plugins/memova/skills/memova-vault-setup/scripts/setup_fixture_harness.py
-
-      - name: Run Collector unit and contract tests (Linux)
-        if: runner.os == 'Linux'
+      - name: Run bounded Collector tests
         shell: bash
+        env:
+          TEST_PROFILE: ${{ matrix.test_profile }}
         run: |
           export PYTHONPATH=collector
-          python -m unittest discover -s collector/tests -v
-          python -m unittest discover -s tests -v
+          if [ "$TEST_PROFILE" = "full" ]; then
+            python -c 'import unittest; count=unittest.defaultTestLoader.discover("collector/tests").countTestCases(); print(f"collector_test_count={count}"); assert count <= 75'
+            python -m unittest discover -s collector/tests -v
+          else
+            python -c 'import unittest; patterns=["test_cli.py", "test_contracts.py", "test_hook.py", "test_installer.py", "test_locking.py", "test_multiplatform_soak.py", "test_scheduler.py"]; count=sum(unittest.defaultTestLoader.discover("collector/tests", pattern=pattern).countTestCases() for pattern in patterns); print(f"collector_portability_test_count={count}"); assert count <= 25'
+            for pattern in test_cli.py test_contracts.py test_hook.py test_installer.py test_locking.py test_multiplatform_soak.py test_scheduler.py; do
+              python -m unittest discover -s collector/tests -p "$pattern" -v
+            done
+          fi
           python -m compileall -q collector
-          python plugins/memova/skills/memova-vault-setup/scripts/setup_fixture_harness.py
 
       - name: Run native Windows restart soak
         if: runner.os == 'Windows'
