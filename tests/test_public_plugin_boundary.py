@@ -40,6 +40,7 @@ class PublicPluginBoundaryTests(unittest.TestCase):
         self.assertEqual(
             skill_names,
             {
+                "memova-connect",
                 "memova-menu",
                 "memova-personal-manual",
                 "memova-knowledge",
@@ -72,7 +73,7 @@ class PublicPluginBoundaryTests(unittest.TestCase):
             (PLUGIN / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8")
         )
         self.assertNotIn("hooks", manifest)
-        self.assertEqual(manifest["version"], "1.10.0")
+        self.assertEqual(manifest["version"], "1.11.0")
         description = manifest["interface"]["longDescription"]
         self.assertIn("up to 20 evidence items", description)
         self.assertIn("invoking Codex agent's native tasks", description)
@@ -212,6 +213,16 @@ class PublicPluginBoundaryTests(unittest.TestCase):
         self.assertIn("waiting for confirmation", workflow)
         self.assertIn("Preserve waiting_for_user as guarded", workflow)
         self.assertIn("allow_implicit_invocation: true", openai_yaml)
+
+    def test_memova_connect_skill_is_discoverable_and_uses_qualified_default_prompt(self) -> None:
+        skill_root = PLUGIN / "skills" / "memova-connect"
+        skill = (skill_root / "SKILL.md").read_text(encoding="utf-8")
+        openai_yaml = (skill_root / "agents" / "openai.yaml").read_text(encoding="utf-8")
+
+        self.assertIn("mvc_", skill)
+        self.assertIn("mvk_", skill)
+        self.assertIn("allow_implicit_invocation: true", openai_yaml)
+        self.assertIn("$memova-connect", openai_yaml)
 
     def test_public_user_facing_metadata_does_not_advertise_collector(self) -> None:
         paths = (

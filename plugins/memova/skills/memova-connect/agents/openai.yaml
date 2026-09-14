@@ -1,0 +1,7 @@
+interface:
+  display_name: "Connect Memova"
+  short_description: "Connect MCP with a code or Agent Key."
+  default_prompt: "Use $memova-connect to connect Memova MCP with my Connection Code or Agent Key."
+
+policy:
+  allow_implicit_invocation: true

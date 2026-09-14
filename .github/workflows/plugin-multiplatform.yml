@@ -50,11 +50,11 @@ jobs:
           SETUP_FIXTURE_CASES: "13"
         run: |
           if [ "$TEST_PROFILE" = "full" ]; then
-            python -c 'import os, unittest; count=unittest.defaultTestLoader.discover("tests").countTestCases()+int(os.environ["SETUP_FIXTURE_CASES"]); print(f"plugin_test_and_fixture_count={count}"); assert count <= 65'
+            python -c 'import os, unittest; count=unittest.defaultTestLoader.discover("tests").countTestCases()+int(os.environ["SETUP_FIXTURE_CASES"]); print(f"plugin_test_and_fixture_count={count}"); assert count <= 80'
             python -m unittest discover -s tests -v
           else
-            python -c 'import os, unittest; patterns=["test_agent_archive.py", "test_ensure_mcp_login.py"]; count=sum(unittest.defaultTestLoader.discover("tests", pattern=pattern).countTestCases() for pattern in patterns)+int(os.environ["SETUP_FIXTURE_CASES"]); print(f"plugin_portability_test_and_fixture_count={count}"); assert count <= 35'
-            for pattern in test_agent_archive.py test_ensure_mcp_login.py; do
+            python -c 'import os, unittest; patterns=["test_agent_archive.py", "test_ensure_mcp_login.py", "test_mcp_connection_auth.py"]; count=sum(unittest.defaultTestLoader.discover("tests", pattern=pattern).countTestCases() for pattern in patterns)+int(os.environ["SETUP_FIXTURE_CASES"]); print(f"plugin_portability_test_and_fixture_count={count}"); assert count <= 45'
+            for pattern in test_agent_archive.py test_ensure_mcp_login.py test_mcp_connection_auth.py; do
               python -m unittest discover -s tests -p "$pattern" -v
             done
           fi
