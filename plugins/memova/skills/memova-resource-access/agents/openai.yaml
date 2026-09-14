@@ -1,0 +1,15 @@
+interface:
+  display_name: "Memova Meeting & Spark Files"
+  short_description: "Find, read, or download your Memova Meeting and Spark files."
+  default_prompt: "Use $memova-resource-access to find and open my latest Memova Meeting or Spark Markdown/HTML file."
+
+policy:
+  allow_implicit_invocation: true
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "memova"
+      description: "Authenticated Memova MCP Resource Access V1 for user-owned Meeting and Spark files."
+      transport: "streamable_http"
+      url: "https://api.memova.ai/mcp"

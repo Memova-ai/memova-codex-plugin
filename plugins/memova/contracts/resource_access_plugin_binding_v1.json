@@ -1,0 +1,130 @@
+{
+  "schema_version": "memova_resource_access_plugin_binding_v1",
+  "minimum_plugin_version": "1.12.0",
+  "minimum_mcp_public_contract_version": "1.11.0",
+  "upstream_snapshot": "upstream/memova_resource_access_v1.json",
+  "oauth_workflows": {
+    "resource-read": [
+      "resources.read",
+      "notes.read",
+      "sparks.read"
+    ],
+    "resource-download": [
+      "resources.read",
+      "resources.export",
+      "notes.read",
+      "sparks.read"
+    ]
+  },
+  "provider_projection": {
+    "contract_version": "memova_resource_access_v1",
+    "standard_methods": [
+      "resources/list",
+      "resources/templates/list",
+      "resources/read"
+    ],
+    "tools": [
+      {
+        "name": "create_memova_resource_download",
+        "required_input_fields": [
+          "uri"
+        ],
+        "optional_input_fields": [],
+        "unknown_input_fields": "reject",
+        "latest_revision_allowed": false
+      },
+      {
+        "name": "get_memova_resource",
+        "required_input_fields": [
+          "uri"
+        ],
+        "optional_input_fields": [],
+        "unknown_input_fields": "reject",
+        "latest_revision_allowed": true
+      },
+      {
+        "name": "search_memova_resources",
+        "required_input_fields": [],
+        "optional_input_fields": [
+          "query",
+          "resource_types",
+          "representations",
+          "updated_after",
+          "updated_before",
+          "cursor",
+          "limit"
+        ],
+        "unknown_input_fields": "reject",
+        "latest_revision_allowed": false
+      }
+    ],
+    "resources": [
+      {
+        "resource_type": "meeting_note",
+        "domain_read_scopes": [
+          "notes.read"
+        ],
+        "representations": [
+          {
+            "representation": "markdown",
+            "mime_type": "text/markdown; charset=utf-8"
+          }
+        ]
+      },
+      {
+        "resource_type": "meeting_overview",
+        "domain_read_scopes": [
+          "notes.read"
+        ],
+        "representations": [
+          {
+            "representation": "html",
+            "mime_type": "text/html; charset=utf-8"
+          }
+        ]
+      },
+      {
+        "resource_type": "spark_page",
+        "domain_read_scopes": [
+          "sparks.read"
+        ],
+        "representations": [
+          {
+            "representation": "html",
+            "mime_type": "text/html; charset=utf-8"
+          },
+          {
+            "representation": "markdown",
+            "mime_type": "text/markdown; charset=utf-8"
+          }
+        ]
+      }
+    ],
+    "access": {
+      "gateway_read_scope": "resources.read",
+      "download_additional_scope": "resources.export",
+      "gateway_scope_alone_grants_domain_access": false,
+      "credential_types": [
+        "oauth",
+        "agent_key"
+      ],
+      "credential_revalidation": "family_specific_at_request_and_download",
+      "scopes_expand_after_issue": false,
+      "download_grant_binds_credential_type": true
+    },
+    "transfer": {
+      "inline_text_max_bytes": 100000,
+      "inline_truncation": false,
+      "inline_oversize_behavior": "download_required",
+      "download_url_ttl_seconds": 300,
+      "download_exact_revision_only": true
+    },
+    "safety": {
+      "raw_database_access": false,
+      "arbitrary_sql_access": false,
+      "write_operations": false,
+      "bulk_export": false,
+      "untrusted_content": true
+    }
+  }
+}

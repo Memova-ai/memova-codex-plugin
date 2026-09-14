@@ -1,7 +1,7 @@
 {
   "name": "memova",
-  "version": "1.11.0",
-  "description": "Create a Personal Manual, use Knowledge V5, manage reviewed Knowledge Entries, and archive authorized Codex outputs.",
+  "version": "1.12.0",
+  "description": "Find user-owned Meeting and Spark files, use Knowledge V5, create a Personal Manual, and archive authorized Codex outputs.",
   "author": {
     "name": "Memova",
     "url": "https://memova.ai"
@@ -20,14 +20,16 @@
     "selected-import",
     "personal-manual",
     "privacy",
-    "agent-archive"
+    "agent-archive",
+    "resource-access",
+    "spark-files"
   ],
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Memova",
-    "shortDescription": "Create a Personal Manual, use private knowledge, and archive Codex outputs.",
-    "longDescription": "Connect Codex to Memova through OAuth, a one-time Connection Code, or an Agent Key for Personal Manual generation, bounded Knowledge V5 retrieval, reviewed first-class Knowledge Entry creation and revision, automation workflows, selected-content import, and consent-aware Codex/Mac beta archiving of final Codex outputs into projects/Uncategorized. Browser-free credentials are stored in the operating system credential store, not Codex configuration. The beta defaults to explicit-only archiving and does not require or promise the unfinished iOS sync experience. A request that authorizes Personal Manual publication under Memova's disclosed privacy practices analyzes up to 20 evidence items from the invoking Codex agent's native tasks and explicitly supplied user content, privately uploads derived Markdown, scoring and client-neutral aggregate evidence counts but no conversation content, and automatically publishes the final manual as a Memova Note.",
+    "shortDescription": "Open Meeting and Spark files, use private knowledge, and archive Codex outputs.",
+    "longDescription": "Connect Codex to Memova through OAuth, a one-time Connection Code, or an Agent Key to find, read, and download exact-revision Meeting Note Markdown, Meeting Overview HTML, and Spark Page Markdown or HTML owned by the current user. Browser-free credentials are stored in the operating system credential store, not Codex configuration. The bounded Resource Access V1 gateway is independent of Knowledge V5 and never exposes raw database, SQL, Blob keys, storage paths, or bulk account export. Memova also supports Personal Manual generation, bounded Knowledge V5 retrieval, reviewed first-class Knowledge Entry creation and revision, automation workflows, selected-content import, and consent-aware Codex/Mac beta archiving of final Codex outputs into projects/Uncategorized. The beta defaults to explicit-only archiving and does not require or promise the unfinished iOS sync experience. A request that authorizes Personal Manual publication under Memova's disclosed privacy practices analyzes up to 20 evidence items from the invoking Codex agent's native tasks and explicitly supplied user content, privately uploads derived Markdown, scoring and client-neutral aggregate evidence counts but no conversation content, and automatically publishes the final manual as a Memova Note.",
     "developerName": "Memova",
     "category": "Productivity",
     "capabilities": [
@@ -39,7 +41,7 @@
     "privacyPolicyURL": "https://memova.ai/privacy",
     "termsOfServiceURL": "https://memova.ai/terms",
     "defaultPrompt": [
-      "Connect Memova MCP using my Connection Code or Agent Key.",
+      "Connect Memova MCP, then find my latest Meeting or Spark file.",
       "请让 Memova 生成并发布我的个人说明书；我同意按照 Memova 已说明的隐私规则处理。",
       "Search and use my Memova Knowledge V5."
     ],

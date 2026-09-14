@@ -3,7 +3,7 @@
     "memova": {
       "type": "http",
       "url": "https://api.memova.ai/mcp",
-      "note": "Memova MCP server with OAuth, one-time Connection Code, and Agent Key authentication."
+      "note": "Memova MCP server with OAuth, one-time Connection Code, or Agent Key authentication for bounded Meeting/Spark resource access, Personal Manual, knowledge, selected imports, and automation."
     }
   }
 }

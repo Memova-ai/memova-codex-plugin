@@ -24,10 +24,24 @@ BASE_SCOPES = (
     "automation.write",
     "knowledge.read",
     "knowledge.write",
+    "resources.read",
+    "resources.export",
+    "sparks.read",
 )
 PERSONAL_MANUAL_SCOPES = (
     "notes.read",
     "personal_manual.write",
+)
+RESOURCE_READ_SCOPES = (
+    "resources.read",
+    "notes.read",
+    "sparks.read",
+)
+RESOURCE_DOWNLOAD_SCOPES = (
+    "resources.read",
+    "resources.export",
+    "notes.read",
+    "sparks.read",
 )
 AUTHORIZE_URL_RE = re.compile(r"https://\S+")
 SCOPE_RE = re.compile(r"^[a-z][a-z0-9_.:-]*$")
@@ -77,7 +91,7 @@ def main() -> int:
     )
     parser.add_argument(
         "--workflow",
-        choices=("all", "personal-manual"),
+        choices=("all", "personal-manual", "resource-read", "resource-download"),
         default="all",
         help="Request only the scopes needed by one supported workflow.",
     )
@@ -87,9 +101,13 @@ def main() -> int:
     if args.reauthorize and args.recover_scopes:
         parser.error("--reauthorize and --recover-scopes cannot be combined")
 
-    requested_scopes = list(
-        PERSONAL_MANUAL_SCOPES if args.workflow == "personal-manual" else BASE_SCOPES
-    )
+    workflow_scopes = {
+        "all": BASE_SCOPES,
+        "personal-manual": PERSONAL_MANUAL_SCOPES,
+        "resource-read": RESOURCE_READ_SCOPES,
+        "resource-download": RESOURCE_DOWNLOAD_SCOPES,
+    }
+    requested_scopes = list(workflow_scopes[args.workflow])
     login_command = build_login_command(requested_scopes)
     manual_login_command = " ".join(login_command)
 

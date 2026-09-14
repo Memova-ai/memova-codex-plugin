@@ -35,6 +35,40 @@ class EnsureMcpLoginTests(unittest.TestCase):
             ],
         )
 
+    def test_resource_read_login_omits_export_scope(self) -> None:
+        command = ensure_mcp_login.build_login_command(
+            list(ensure_mcp_login.RESOURCE_READ_SCOPES)
+        )
+
+        self.assertEqual(
+            command,
+            [
+                "codex",
+                "mcp",
+                "login",
+                "memova",
+                "--scopes",
+                "resources.read,notes.read,sparks.read",
+            ],
+        )
+
+    def test_resource_download_login_adds_export_scope(self) -> None:
+        command = ensure_mcp_login.build_login_command(
+            list(ensure_mcp_login.RESOURCE_DOWNLOAD_SCOPES)
+        )
+
+        self.assertEqual(
+            command,
+            [
+                "codex",
+                "mcp",
+                "login",
+                "memova",
+                "--scopes",
+                "resources.read,resources.export,notes.read,sparks.read",
+            ],
+        )
+
     def test_existing_oauth_does_not_claim_requested_scopes_are_verified(self) -> None:
         captured: list[dict] = []
         status = {"listed": True, "auth": "OAuth", "returncode": 0, "raw": "memova OAuth"}
