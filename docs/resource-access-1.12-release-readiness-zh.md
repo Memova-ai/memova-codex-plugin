@@ -43,7 +43,8 @@ OAuth 分流；不会把 helper 用户静默切换到浏览器 OAuth。
   legacy OAuth，并把 manifest starter prompts 保持在最多 3 条。
 - [x] 运行审计后的代表性本地测试，单次最多 100 项且零 skip；Plugin validator、JSON、Python
   编译和 `git diff --check` 全部通过。
-- [ ] 记录精确 backend/plugin commit、测试计划、测试数和结果；本地通过不描述为已部署。
+- [x] 记录候选实现 commit：backend `fb7d8b52`、Plugin `3e21d74`；测试计划与数量见“当前本地证据”。
+  这些都是本地候选，不描述为已部署。
 
 ## Staging 验收门
 
