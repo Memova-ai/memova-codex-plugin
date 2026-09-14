@@ -29,7 +29,7 @@ OAuth 分流；不会把 helper 用户静默切换到浏览器 OAuth。
 
 ## 本地完成门
 
-- [x] 后端 Resource Access 分支 rebase 到 backend `main@a0bbb48a`，已解决 selector 冲突并把 migration
+- [x] 后端 Resource Access 分支 rebase 到 backend `main@f4359dae`，已解决 selector 冲突并把 migration
   `down_revision` 更新到 `mcp_agent_credentials_v1_01`。
 - [x] 在隔离的真实 PostgreSQL 14 上执行迁移 upgrade/downgrade；验证历史 Spark page 的确定性
   `stable_page_id` 回填、新 writer 赋值和查询索引。
@@ -43,7 +43,7 @@ OAuth 分流；不会把 helper 用户静默切换到浏览器 OAuth。
   legacy OAuth，并把 manifest starter prompts 保持在最多 3 条。
 - [x] 运行审计后的代表性本地测试，单次最多 100 项且零 skip；Plugin validator、JSON、Python
   编译和 `git diff --check` 全部通过。
-- [x] 记录候选实现 commit：backend `fb7d8b52`、Plugin `3e21d74`；测试计划与数量见“当前本地证据”。
+- [x] 记录候选实现 commit：backend `5eb1e74c`、Plugin `3e21d74`；测试计划与数量见“当前本地证据”。
   这些都是本地候选，不描述为已部署。
 
 ## Staging 验收门
