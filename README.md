@@ -4,7 +4,8 @@ Codex plugin marketplace for Memova.
 
 This plugin bundles:
 
-- the Memova OAuth MCP server at `https://api.memova.ai/mcp`,
+- the authenticated Memova MCP server at `https://api.memova.ai/mcp`,
+- the `memova-connect` skill for browser-free Connection Code and Agent Key setup,
 - the `memova-menu` skill for a lightweight `@memova` workflow menu,
 - the `memova-personal-manual` skill for bounded history analysis and atomic Personal Manual Note
   publication,
@@ -17,6 +18,12 @@ This plugin bundles:
 - the `memova-agent-archive` skill for consent-aware Codex output archiving, manifest-only
   scheduled scans, stable-ID Project moves, and Blob/iCloud/Knowledge V5 status,
 - Memova starter prompts and plugin presentation metadata.
+
+Version `1.11.0` adds browser-free MCP connection. A short-lived `mvc_` Connection Code is
+exchanged once for Memova's existing OAuth access/refresh token family; a reusable `mvk_` Agent Key
+can be used directly. The helper accepts only `https://api.memova.ai/mcp`, stores credentials in
+the operating system credential store, and writes only a secret-free `http_headers_helper` command
+to Codex configuration. Existing OAuth remains supported unchanged.
 
 Version `1.10.0` adds P9 Agent archiving. Eligible current-task final Markdown, HTML, and text
 outputs are copied to `projects/Uncategorized/`, submitted through the versioned MCP archive
@@ -98,7 +105,7 @@ canonical Knowledge V5 Codex Session; search rollout and semantic enrichment rem
 
 Independent complete-history collection is maintained separately under top-level `collector/`; it
 is not part of the marketplace plugin path, public Plugin menu, starter prompts, or installation.
-Collector remains independently versioned at `1.6.0` because this `1.10.0` public Plugin release
+Collector remains independently versioned at `1.6.0` because this Plugin release
 does not change Collector code, consent, transport, or installer bytes.
 
 ## Should This Repo Be Public?
@@ -179,7 +186,26 @@ need both.
 
 Start a new thread after installation so Codex loads the plugin.
 
-## Connect Memova OAuth MCP
+## Connect Memova MCP without browser OAuth
+
+Generate a one-time Connection Code in Memova and give Codex a prompt such as:
+
+```text
+Connect Memova MCP with this configuration. After setup, search for one recent meeting to verify it.
+URL: https://api.memova.ai/mcp
+Connection Code: <your mvc_ code>
+```
+
+The `memova-connect` skill passes the credential to the helper through standard input, never a
+command argument or file. The helper exchanges a Connection Code for the existing OAuth token
+family, stores it in Keychain, Credential Manager, or Secret Service, and configures Codex's local
+header helper. An advanced `mvk_` Agent Key uses the same secure local path but remains reusable
+until expiry or server-side revocation. The secret is never written to `config.toml`.
+
+After successful setup, restart Codex or open a new task so the MCP tool catalog reloads. A new
+task can then perform the requested bounded read to confirm the connection.
+
+## Connect Memova with legacy OAuth
 
 Memova's setup and automation workflows require the bundled MCP server to be authenticated before
 Codex can expose its tools. The plugin normally starts this login automatically the first time a
