@@ -142,6 +142,13 @@ class PublicPluginBoundaryTests(unittest.TestCase):
         self.assertIn('"sparks.read"', helper)
         self.assertIn('"--recover-scopes"', helper)
 
+        resource_skill = (
+            PLUGIN / "skills" / "memova-resource-access" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("If any required Memova tool is unavailable", resource_skill)
+        self.assertIn("scope-filtered tool catalog", resource_skill)
+        self.assertIn("`create_memova_resource_download` is absent", resource_skill)
+
     def test_personal_manual_skill_keeps_raw_history_out_of_mcp(self) -> None:
         manual = (
             PLUGIN / "skills" / "memova-personal-manual" / "SKILL.md"

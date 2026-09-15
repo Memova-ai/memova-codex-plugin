@@ -1,8 +1,8 @@
 # Memova Resource Access Plugin 1.12 发布准备
 
-最后更新：2026-09-14
+最后更新：2026-09-15
 
-状态：本地候选；尚未提交、部署或发布。
+状态：Plugin PR21 候选；后端 staging 验收完成，production 与 Plugin 发布尚未执行。
 
 ## 发布说明草案
 
@@ -43,30 +43,35 @@ OAuth 分流；不会把 helper 用户静默切换到浏览器 OAuth。
   legacy OAuth，并把 manifest starter prompts 保持在最多 3 条。
 - [x] 运行审计后的代表性本地测试，单次最多 100 项且零 skip；Plugin validator、JSON、Python
   编译和 `git diff --check` 全部通过。
-- [x] 记录候选实现 commit：backend `5eb1e74c`、Plugin `3e21d74`；测试计划与数量见“当前本地证据”。
-  这些都是本地候选，不描述为已部署。
+- [x] 记录候选实现 commit：backend `5eb1e74c`、Plugin `3e21d74`；最终后端验收基线为
+  `main@05c481b7649e7eab3753c0ee975d010b2999ca78`，Plugin PR21 当前 head 为 `6197e3933da95a4a323825baed7777addadd4383`。
 
 ## Staging 验收门
 
-以下均为共享环境动作，执行前需要新的明确批准：
+以下共享环境动作已在明确批准后完成：
 
-- [ ] 从 backend `main` 运行正式 migration preflight、staging migration 和 API/MCP 部署；记录镜像
+- [x] 从 backend `main` 运行正式 migration preflight、staging migration 和 API/MCP 部署；记录镜像
   digest、revision、健康状态和回滚锚点。
-- [ ] 将 public MCP contract selector 提升到包含 Resource Access 的版本，并发布
+- [x] 将 public MCP contract selector 提升到包含 Resource Access 的版本，并发布
   `resources.read`、`resources.export`、`sparks.read` OAuth scopes；确认旧 token 不会自动获得权限。
-- [ ] selector 从当前 production `1.9.6` 先提升到 `1.10.0` 并验证 Agent Archive 累积差异，再提升到
-  `1.11.0` 验证 Resource Access；如需直接提升，必须有覆盖两个累积 delta 的显式批准测试计划。
-- [ ] 使用可删除的合成账号生成 Meeting 与 Spark fixtures，不读取或修改真实用户数据。
-- [ ] 分别通过 legacy OAuth、Connection Code 和 Agent Key 验证工具 catalog、MCP Resources 和
+- [x] staging selector 运行 `1.11.0`，其累积契约与部署门禁已经通过；production 版本提升仍属于后续独立发布门。
+- [x] 使用可删除的合成账号生成 Meeting 与 Spark fixtures，不读取或修改真实用户数据。
+- [x] 分别通过 legacy OAuth、Connection Code 和 Agent Key 验证 scope-filtered 工具 catalog、MCP Resources 和
   direct tool 调用；认证方式不同但授权结果必须一致。
-- [ ] 验证 Meeting Markdown、Meeting Overview HTML、Spark Markdown/HTML 的 filename、MIME、bytes、
+- [x] 验证 Meeting Markdown、Meeting Overview HTML、Spark Markdown/HTML 的 filename、MIME、bytes、
   SHA-256、revision 和 related representation 一致。
-- [ ] 验证 100,000-byte 边界、不截断行为、单 exact-resource 下载、300 秒过期、attachment、
+- [x] 验证 100,000-byte 边界、不截断行为、单 exact-resource 下载、300 秒过期、attachment、
   `nosniff`、`no-store`、撤销后失效和日志签名脱敏。
-- [ ] 验证跨用户/跨 workspace 统一为 not found；trashed/deleted/not-ready/不存在 revision 不得返回
+- [x] 验证跨用户/跨 workspace 统一为 not found；trashed/deleted/not-ready/不存在 revision 不得返回
   旧版本或其他资源。
-- [ ] 验证包含提示词注入文本的 Markdown/HTML 只作为数据返回，不触发写入、授权、上传或删除。
-- [ ] 删除合成账号和 fixtures，并确认凭证、下载 grant 与资源访问全部失效。
+- [x] 验证包含提示词注入文本的 Markdown/HTML 只作为数据返回，不触发写入、授权、上传或删除。
+- [x] 删除合成账号和 fixtures，并确认凭证、下载 grant 与资源访问全部失效。
+
+staging 使用 immutable API digest
+`sha256:a2583ee47bdc6e202853ce7d3d567951be0c2e20eec36a4a568fe754a6b55b4e`，API revision
+`ca-memova-api-staging-jpe--rfr-e9a57139b1f2b579-063433` 最终为 Healthy/Running、单 replica、100% traffic。
+三轮可审计 smoke 为 `ra112-neg-r1-20260915`、`ra112-neg-r2c-20260915`、
+`ra112-neg-r3-20260915`，每轮完成九步账号删除并确认 user/workspace 零残留。
 
 任何 staging gate 失败都停止发布；不得通过放宽 scope、tenant、revision、integrity 或
 untrusted-content 保护来提高通过率。
@@ -103,7 +108,7 @@ untrusted-content 保护来提高通过率。
 
 ## 当前本地证据
 
-- Backend 审计后的完整 Resource Access 选择集：91/91，零 skip，通过；其中 4 个隔离真实
+- Backend 最终 PR251 精确树在本地与 GitHub 各通过 3×100，零 skip；其中隔离真实
   PostgreSQL 14 用例验证 Agent Key owner/workspace/scope/revoke 重校验、迁移分批回填与索引
   upgrade/downgrade，以及 Meeting/Spark discovery、keyset、tenant/lifecycle 和 stable revision。
 - Plugin 1.12 suite：72 个 unittest + 13 个 setup fixtures，合计 85/85，通过；Plugin
@@ -113,8 +118,7 @@ untrusted-content 保护来提高通过率。
   Connection Code / Agent Key helper 的 full scopes 包含全部 Resource Access scopes。
 - iOS auth handoff 已加入 1.12 版本矩阵、旧凭证迁移、集合式 scope 解码、exact-file 验收与撤销后
   download grant 失效要求；iOS 可以先开发凭证 UI，不需要新增 Resource API/DTO。
-- 尚未在本机执行依赖 `pgvector` 的全空库 Alembic 链：Docker 虚拟磁盘空间不足，
-  而本机 PostgreSQL 14 没有 vector extension。新增 CI gate 将在 pgvector PostgreSQL 16
-  容器中创建独立 `resource_access_test` 库执行。
-- 未执行任何共享环境 migration、staging/production deployment、线上 OAuth/config、
-  Plugin 发布或 OpenAI Portal 修改。
+- 最终 Plugin 审计确认内置 upstream snapshot 与后端 `main@05c481b7` 逐字节一致，且后续 backend
+  `origin/main` 未修改该冻结合同。Plugin 还明确处理按 scope 过滤的工具目录：任一所需工具缺失都进入
+  能力/scope 检查；缺少 `resources.export` 时仅下载工具隐藏，不误判资源或后端不存在。
+- production deployment、Plugin 发布和 OpenAI Portal 修改均未执行。

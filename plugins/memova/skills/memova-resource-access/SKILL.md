@@ -30,8 +30,11 @@ For search and inline read, the token needs `resources.read` plus the adapter sc
 for Meeting resources or `sparks.read` for Spark resources. A download also needs
 `resources.export`; `resources.read` alone never grants domain access.
 
-If the Memova tools are unavailable, first inspect the browser-free helper state without changing
-it:
+If any required Memova tool is unavailable, first inspect the browser-free helper state without
+changing it. Treat a missing tool as a capability or scope signal, not as proof that the resource
+is absent or the backend is unavailable. In particular, the scope-filtered tool catalog can still
+show search and inline-read tools while `create_memova_resource_download` is absent because the
+current credential lacks `resources.export`:
 
 ```bash
 python3 plugins/memova/scripts/mcp_connection_auth.py status

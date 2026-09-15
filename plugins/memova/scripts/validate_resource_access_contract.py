@@ -322,6 +322,8 @@ def validate_plugin(binding: dict[str, Any], plugin_root: Path = PLUGIN_ROOT) ->
         str(projection["transfer"]["download_url_ttl_seconds"]),
         "five minutes",
         "untrusted content",
+        "any required Memova tool is unavailable",
+        "scope-filtered tool catalog",
     }
     required_skill_tokens.update(tool["name"] for tool in projection["tools"])
     required_skill_tokens.update(resource["resource_type"] for resource in projection["resources"])
