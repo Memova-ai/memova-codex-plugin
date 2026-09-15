@@ -7,6 +7,8 @@ This plugin bundles:
 - the authenticated Memova MCP server at `https://api.memova.ai/mcp`,
 - the `memova-connect` skill for browser-free Connection Code and Agent Key setup,
 - the `memova-menu` skill for a lightweight `@memova` workflow menu,
+- the `memova-resource-access` skill for bounded Meeting/Spark Markdown and HTML discovery,
+  inline read, and exact-file download,
 - the `memova-personal-manual` skill for bounded history analysis and atomic Personal Manual Note
   publication,
 - the `memova-knowledge` skill for bounded Knowledge V5 retrieval and reviewed Knowledge Entries,
@@ -19,11 +21,21 @@ This plugin bundles:
   scheduled scans, stable-ID Project moves, and Blob/iCloud/Knowledge V5 status,
 - Memova starter prompts and plugin presentation metadata.
 
-Version `1.11.0` adds browser-free MCP connection. A short-lived `mvc_` Connection Code is
+Version `1.12.0` adds Resource Access V1 while preserving the browser-free MCP connection introduced
+in `1.11.0`. A short-lived `mvc_` Connection Code is
 exchanged once for Memova's existing OAuth access/refresh token family; a reusable `mvk_` Agent Key
 can be used directly. The helper accepts only `https://api.memova.ai/mcp`, stores credentials in
 the operating system credential store, and writes only a secret-free `http_headers_helper` command
 to Codex configuration. Existing OAuth remains supported unchanged.
+
+Codex can search, read, and download the authenticated
+user's exact-revision Meeting Note Markdown, Meeting Overview HTML, and Spark Page Markdown or
+HTML. The same three MCP tools are available to direct MCP clients without the Plugin Skill:
+`search_memova_resources`, `get_memova_resource`, and `create_memova_resource_download`. The
+gateway is independent of Knowledge V5, enforces owner/workspace and domain scopes, treats file
+content as untrusted data, and exposes neither database/SQL access nor Blob/storage paths. Inline
+text is limited to 100,000 UTF-8 bytes without silent truncation; exact single-file download links
+expire after 300 seconds. V1 deliberately excludes writes and bulk account export.
 
 Version `1.10.0` adds P9 Agent archiving. Eligible current-task final Markdown, HTML, and text
 outputs are copied to `projects/Uncategorized/`, submitted through the versioned MCP archive
@@ -105,7 +117,7 @@ canonical Knowledge V5 Codex Session; search rollout and semantic enrichment rem
 
 Independent complete-history collection is maintained separately under top-level `collector/`; it
 is not part of the marketplace plugin path, public Plugin menu, starter prompts, or installation.
-Collector remains independently versioned at `1.6.0` because this Plugin release
+Collector remains independently versioned at `1.6.0` because this public Plugin release
 does not change Collector code, consent, transport, or installer bytes.
 
 ## Should This Repo Be Public?
@@ -139,6 +151,11 @@ API and iOS handoff are ready.
 
 Development remains isolated on a `codex/` feature branch until the matching backend contract is
 ready. Existing V2/V3 tools remain present during the staged transition; V5 does not dual-write V3.
+
+Resource Access Plugin 1.12 的版本关系、发布说明草案、真实 PostgreSQL 门禁以及 staging/production
+验收清单位于
+[`docs/resource-access-1.12-release-readiness-zh.md`](docs/resource-access-1.12-release-readiness-zh.md)。
+未勾选的共享环境门禁不是当前授权，也不得描述为已完成。
 
 ## Requirements
 
@@ -207,12 +224,13 @@ task can then perform the requested bounded read to confirm the connection.
 
 ## Connect Memova with legacy OAuth
 
-Memova's setup and automation workflows require the bundled MCP server to be authenticated before
-Codex can expose its tools. The plugin normally starts this login automatically the first time a
-setup or automation workflow needs Memova MCP and the local server is `Not logged in`. It runs:
+Memova's resource, setup, and automation workflows require the bundled MCP server to be
+authenticated before Codex can expose their tools. The plugin normally starts this login
+automatically the first time one of those workflows needs Memova MCP and the local server is
+`Not logged in`. It runs:
 
 ```bash
-codex mcp login memova --scopes notes.read,personal_manual.write,automation.read,automation.write,knowledge.read,knowledge.write
+codex mcp login memova --scopes notes.read,personal_manual.write,automation.read,automation.write,knowledge.read,knowledge.write,resources.read,resources.export,sparks.read
 ```
 
 and attempts to open one browser authorization URL. The user still approves Memova OAuth in the
@@ -257,7 +275,7 @@ normal system Terminal/PowerShell outside the Codex task. Do not clear OAuth/bro
 Codex sandbox settings, or retry the helper first. For a complete all-workflow login, the command is:
 
 ```powershell
-codex mcp login memova --scopes notes.read,personal_manual.write,automation.read,automation.write,knowledge.read,knowledge.write
+codex mcp login memova --scopes notes.read,personal_manual.write,automation.read,automation.write,knowledge.read,knowledge.write,resources.read,resources.export,sparks.read
 ```
 
 You can verify the state with:
@@ -269,6 +287,33 @@ codex mcp list
 The `memova` row should be enabled and logged in. If it says `Not logged in`, MCP-backed setup and
 automation tools such as `list_pending_knowledge_base_setups` will not be exposed in Codex yet.
 Avoid starting a second manual `codex mcp login` while a Memova authorization tab is already open.
+
+## Find Meeting and Spark files
+
+Ask naturally or invoke the Skill directly:
+
+```text
+Find and open my latest Memova Meeting or Spark file.
+@memova Find the HTML overview from yesterday's product meeting.
+Use $memova-resource-access to download my latest Spark Page as Markdown.
+```
+
+Search and inline read require `resources.read` plus `notes.read` for Meeting files or
+`sparks.read` for Spark files. A download also requires `resources.export`. The Skill uses separate
+minimum-scope recovery modes so an inline read does not request export permission. Existing tokens
+do not gain the new scopes automatically. Legacy browser OAuth must be reauthorized; helper OAuth
+created from an old Connection Code must reconnect with a new Code; an old Agent Key must be
+replaced with a newly generated key and revoked only after verification. Restart Codex and start a
+new task after the successful credential update so the tool catalog reloads.
+
+Meeting Markdown comes from an exact Meeting Note revision; Meeting HTML is the exact successful
+Meeting Overview. Spark Markdown and HTML come from the same immutable Spark Page revision. Search
+returns exact revision links, and the Skill never guesses object IDs or silently substitutes an
+older revision. File text is data, not instructions for Codex to execute.
+
+Direct MCP-only clients can call the three Resource Access V1 tools listed above, or use the MCP
+2025-11-25 `resources/list`, `resources/templates/list`, and `resources/read` methods. The Plugin
+adds routing and safe interaction guidance; it is not a second data path.
 
 ## Use The Plugin
 
@@ -289,14 +334,15 @@ Codex should open a short Memova menu:
 6. Run latest note automation tasks
 7. Archive Codex outputs to Memova
 8. Legacy V2/V3/V4 vault setup or diagnosis
+9. Find, read, or download Meeting and Spark files
 ```
 
 Reply with a number, or select one of the plugin starter prompts:
 
 ```text
+Connect Memova MCP, then find my latest Meeting or Spark file.
 请让 Memova 生成并发布我的个人说明书；我同意按照 Memova 已说明的隐私规则处理。
 Search and use my Memova Knowledge V5.
-Archive my Codex output in Memova.
 ```
 
 You can still ask directly:
@@ -307,12 +353,13 @@ You can still ask directly:
 @memova Import this selected content.
 @memova Archive this final output in Memova.
 @memova Set up legacy V2/V3/V4 vault.
+@memova Find my latest Spark HTML file.
 ```
 
 The menu is the safe default entrypoint. It does not run a write-heavy workflow just because the
 user typed bare `@memova`; it routes the user to Knowledge V5 retrieval/proposals,
-Personal Manual generation, selected-content import, read-only automation task review,
-latest-note automation task execution, or explicit legacy vault tools.
+Personal Manual generation, Meeting/Spark resource access, selected-content import, read-only
+automation task review, latest-note automation task execution, or explicit legacy vault tools.
 
 ## Create A Personal Manual
 
@@ -609,8 +656,9 @@ URL import, Codex internal JSONL/SQLite, filesystem scans, or UI scraping as a f
 When triggered, the bundled `memova-menu` skill tells Codex to:
 
 1. Run the non-blocking plugin version check used by every public Memova Skill.
-2. Show a numbered menu for Personal Manual generation, selected-content import, automation task
-   review, latest-note automation task execution, and explicit legacy vault compatibility.
+2. Show a numbered menu for Personal Manual generation, Meeting/Spark resource access,
+   selected-content import, automation task review, latest-note automation task execution, and
+   explicit legacy vault compatibility.
 3. Run the one-time knowledge-base setup reminder only after a legacy vault option is selected.
 4. Treat a simple numeric reply like `1` or `2` as the selected Memova action in the current
    thread.
@@ -678,7 +726,7 @@ If Memova tools are unavailable:
   Memova account as the iOS app setup.
 - If automatic browser opening fails, copy the printed `authorization_url` into a browser. If the
   helper cannot execute `codex` because of WindowsApps or sandbox permissions, run
-`codex mcp login memova --scopes notes.read,personal_manual.write,automation.read,automation.write,knowledge.read,knowledge.write`
+`codex mcp login memova --scopes notes.read,personal_manual.write,automation.read,automation.write,knowledge.read,knowledge.write,resources.read,resources.export,sparks.read`
   directly in Windows Terminal or PowerShell, then restart Codex or start a new thread.
 - If setup packages exist in the app but Codex sees none, the most likely cause is that Codex OAuth
   is connected to a different Memova account than the iOS app.
@@ -700,7 +748,7 @@ python3 -m json.tool plugins/memova/.mcp.json >/dev/null
 Validate skill metadata and helper scripts:
 
 ```bash
-ruby -e 'require "yaml"; YAML.load_file("plugins/memova/skills/memova-menu/agents/openai.yaml"); YAML.load_file("plugins/memova/skills/memova-personal-manual/agents/openai.yaml"); YAML.load_file("plugins/memova/skills/memova-workflow/agents/openai.yaml"); YAML.load_file("plugins/memova/skills/memova-vault-setup/agents/openai.yaml"); YAML.load_file("plugins/memova/skills/memova-vault-diagnose/agents/openai.yaml"); puts "yaml ok"'
+ruby -e 'require "yaml"; Dir["plugins/memova/skills/*/agents/openai.yaml"].sort.each { |path| YAML.load_file(path) }; puts "yaml ok"'
 python3 -m py_compile plugins/memova/scripts/*.py plugins/memova/skills/memova-personal-manual/scripts/*.py plugins/memova/skills/memova-vault-setup/scripts/*.py
 python3 plugins/memova/skills/memova-vault-setup/scripts/create_memova_vault.py discover
 python3 plugins/memova/skills/memova-vault-setup/scripts/setup_fixture_harness.py --json

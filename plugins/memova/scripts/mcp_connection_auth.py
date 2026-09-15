@@ -41,6 +41,9 @@ FULL_MCP_SCOPES = (
     "knowledge.write",
     "notes.read",
     "personal_manual.write",
+    "resources.read",
+    "resources.export",
+    "sparks.read",
 )
 _CREDENTIAL_PATTERN = re.compile(
     r"^(?P<kind>mvk|mvc)_[A-Za-z0-9_-]{16}_[A-Za-z0-9_-]{43}$"

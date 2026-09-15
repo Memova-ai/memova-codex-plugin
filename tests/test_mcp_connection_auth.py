@@ -68,6 +68,15 @@ class McpConnectionAuthTests(unittest.TestCase):
                     "revocation_endpoint": "https://api.memova.ai/v1/mcp/oauth/revoke",
                 }
             if url.endswith("/register"):
+                self.assertEqual(
+                    set(kwargs["payload"]["scope"].split()),
+                    set(FULL_MCP_SCOPES),
+                )
+                self.assertTrue(
+                    {"resources.read", "resources.export", "sparks.read"}.issubset(
+                        FULL_MCP_SCOPES
+                    )
+                )
                 return 201, {"client_id": "registered-client"}
             if url.endswith("/connection-codes/exchange"):
                 self.assertEqual(kwargs["payload"]["connection_code"], code)

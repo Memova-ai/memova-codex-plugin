@@ -1,6 +1,6 @@
 ---
 name: memova-menu
-description: Show the Memova workflow menu for bare @memova requests and route specific requests such as @memova Personal Manual, Knowledge V5, explicit import, automation, or legacy vault tools. A specific Personal Manual generation request starts that workflow automatically; a bare or ambiguous request does not start a write-heavy workflow.
+description: Show the Memova workflow menu for bare @memova requests and route specific requests such as @memova Personal Manual, Knowledge V5, Meeting or Spark files, explicit import, automation, or legacy vault tools. A specific Personal Manual generation request starts that workflow automatically; a bare or ambiguous request does not start a write-heavy workflow.
 ---
 
 # Memova Menu
@@ -53,6 +53,7 @@ Memova
 6. Run latest note automation tasks
 7. Archive Codex outputs to Memova
 8. Legacy V2/V3/V4 vault setup or diagnosis
+9. Find, read, or download Meeting and Spark files
 
 Reply with a number, or tell me what you want to do.
 ```
@@ -94,6 +95,10 @@ repeat `@memova`.
 - `8` or "legacy vault": Ask whether the user wants setup or diagnosis. Run the one-time legacy
   reminder, then follow `plugins/memova/skills/memova-vault-setup/SKILL.md` for setup or
   `plugins/memova/skills/memova-vault-diagnose/SKILL.md` for diagnosis.
+- `9`, "Meeting files", "Spark files", "Markdown", "HTML", or "resource access": Follow
+  `plugins/memova/skills/memova-resource-access/SKILL.md`. Discovery and inline reads are
+  read-only. Create a short-lived exact-resource download only when the user requests a file or
+  inline content is too large.
 - Do not run Memova MCP login merely to show the menu.
 
 ## Safety

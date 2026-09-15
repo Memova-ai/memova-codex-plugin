@@ -36,8 +36,11 @@ confirmation.
    recent meeting, to verify access. Do not claim that this task can reload its frozen tool catalog.
 
 A Connection Code is consumed once and exchanged for the existing OAuth access/refresh token
-family. An Agent Key is reusable until it expires or is revoked. Both currently receive the full
-V1 MCP scope set. The helper output and status are safe metadata and never include the credential.
+family. An Agent Key is reusable until it expires or is revoked. Newly generated credentials
+receive the current full MCP scope set, including `resources.read`, `resources.export`, and
+`sparks.read`. Existing credentials keep their issue-time scopes: never claim that an older Agent
+Key or OAuth connection gained Resource Access automatically. The helper output and status are safe
+metadata and never include the credential.
 
 If the code is expired or already used, ask the user to generate one new Connection Code. Do not
 fall back to browser OAuth unless the user explicitly chooses the legacy OAuth path. For a safe
