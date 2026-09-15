@@ -2,7 +2,7 @@
 
 最后更新：2026-09-15
 
-状态：Plugin PR21 候选；后端 staging 验收完成，production 与 Plugin 发布尚未执行。
+状态：Plugin PR21 候选；staging 验收及已批准的生产样本验收完成，Plugin 尚未合并或发布。
 
 ## 发布说明草案
 
@@ -44,7 +44,8 @@ OAuth 分流；不会把 helper 用户静默切换到浏览器 OAuth。
 - [x] 运行审计后的代表性本地测试，单次最多 100 项且零 skip；Plugin validator、JSON、Python
   编译和 `git diff --check` 全部通过。
 - [x] 记录候选实现 commit：backend `5eb1e74c`、Plugin `3e21d74`；最终后端验收基线为
-  `main@05c481b7649e7eab3753c0ee975d010b2999ca78`，Plugin PR21 当前 head 为 `6197e3933da95a4a323825baed7777addadd4383`。
+  `main@05c481b7649e7eab3753c0ee975d010b2999ca78`，Plugin PR21 已验收实现 head 为
+  `93802d76124177a3a74b280e3a9381b784ad5273`。后续仅文档补充不得冒称该提交的原始 CI 已覆盖新提交。
 
 ## Staging 验收门
 
@@ -54,7 +55,7 @@ OAuth 分流；不会把 helper 用户静默切换到浏览器 OAuth。
   digest、revision、健康状态和回滚锚点。
 - [x] 将 public MCP contract selector 提升到包含 Resource Access 的版本，并发布
   `resources.read`、`resources.export`、`sparks.read` OAuth scopes；确认旧 token 不会自动获得权限。
-- [x] staging selector 运行 `1.11.0`，其累积契约与部署门禁已经通过；production 版本提升仍属于后续独立发布门。
+- [x] staging selector 运行 `1.11.0`，其累积契约与部署门禁已经通过；production selector 后续也已在独立批准后提升。
 - [x] 使用可删除的合成账号生成 Meeting 与 Spark fixtures，不读取或修改真实用户数据。
 - [x] 分别通过 legacy OAuth、Connection Code 和 Agent Key 验证 scope-filtered 工具 catalog、MCP Resources 和
   direct tool 调用；认证方式不同但授权结果必须一致。
@@ -78,12 +79,18 @@ untrusted-content 保护来提高通过率。
 
 ## Production 与 Plugin 发布门
 
-以下动作同样需要分别批准：
+已完成项按已有授权与证据记录；未完成的共享环境动作仍须分别批准：
 
-- [ ] 后端生产迁移/部署使用 staging 已验证的同一代码和迁移链，并记录双区域 digest、revision、
-  traffic、health、monitor 和回滚锚点。
-- [ ] 先验证 production MCP Resource Access 可用，再合并并发布 Plugin `1.12.0`；不得先发布一个
-  指向尚未开放后端能力的 Plugin。
+- [x] 后端生产依赖已通过独立部署与 API-only selector 提升开放 Resource Access。部署与双区域
+  健康检查见已有生产记录；本轮没有重复部署或迁移。2026-09-15 新鲜全局 initialize 仍返回
+  `serverInfo.version=1.11.0` 及 `resources` capability，已认证文件读取与下载通过。
+- [x] 当前账号生产验收按用户澄清，选择 Spark 或 Meeting Note 中最近可用的一份；本次选中 Meeting。
+  Markdown 6,860 bytes、Overview HTML 17,223 bytes，各三轮固定 revision、bytes、SHA-256、MIME、
+  attachment、HTTP200 和 nosniff 全通过，三轮文件逐字节一致。
+- [x] 补齐中文文件名证据：同一资源与 revision 各补验一次，正确优先解析 UTF-8 `filename*`，
+  两份文件所有 13 项检查通过。首轮验证器只读 ASCII fallback 的原始记录保留；其未保存的 header
+  不回填为通过。round2、round3 与补验共同提供各三份完整文件名证据。
+- [ ] 合并并发布 Plugin `1.12.0`。生产 Resource Access 前置条件已满足，本轮不执行发布动作。
 - [ ] 更新后端 Plugin compatibility metadata，使 `latest_version=1.12.0`，但不降低仍受支持的旧版本。
 - [ ] 新安装或升级的 Plugin 在全新 Codex task 中加载 resource tools；旧任务不要求重复登录或部署。
 - [ ] 使用当前发布面的正向/负向 reviewer prompts 复核真实展示，不复用历史固定工具数或测试数。
@@ -121,4 +128,14 @@ untrusted-content 保护来提高通过率。
 - 最终 Plugin 审计确认内置 upstream snapshot 与后端 `main@05c481b7` 逐字节一致，且后续 backend
   `origin/main` 未修改该冻结合同。Plugin 还明确处理按 scope 过滤的工具目录：任一所需工具缺失都进入
   能力/scope 检查；缺少 `resources.export` 时仅下载工具隐藏，不误判资源或后端不存在。
-- production deployment、Plugin 发布和 OpenAI Portal 修改均未执行。
+- 2026-09-15 PR21 在线核对：OPEN、非 Draft、MERGEABLE/CLEAN；head `93802d7`，base
+  `main@3fd1e159`。四项 Linux/Windows push/PR checks 均成功；复用现有证据，无手动重跑。
+  [PR CI](https://github.com/Memova-ai/memova-codex-plugin/actions/runs/34942568483) 精确 head
+  为 `93802d7`，日志确认 Linux 85 项（72 unittest + 13 fixtures）、Windows 43 项。
+- manifest 与 binding 的最低 Plugin 版本均为 `1.12.0`；最低 MCP 为 `1.11.0`，当前生产满足。
+  GitHub 最近稳定 release 为 `v1.11.0`，未发现 `v1.12.0` tag。生产 compatibility 仍为
+  latest `1.11.0` / minimum `1.8.2`；发布后的版本提示更新是单独的后端动作。
+- 本轮私有验收记录保存在操作者本地；不向 GitHub 发布真实业务文件、标题、对象 ID 或下载授权。
+  Spark 生产查询无可见资源，未执行 Spark 文件下载；四种表示的完整覆盖仍以既有合成 staging
+  验收为证，不能把本次两种表示的生产证据扩写为四种。
+- 本轮仅更新本地发布文档；未推送、合并、打 tag、创建 release、修改 compatibility 或操作 Portal。
