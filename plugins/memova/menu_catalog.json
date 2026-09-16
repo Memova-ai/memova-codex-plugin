@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "features": [
+    {
+      "id": "personal_manual",
+      "labels": {
+        "en": "Create or update my Personal Manual",
+        "zh-CN": "生成或更新个人说明书"
+      },
+      "entry_tools": [
+        "get_personal_manual_preflight",
+        "upsert_personal_manual"
+      ]
+    },
+    {
+      "id": "knowledge_search",
+      "labels": {
+        "en": "Search and use my Knowledge V5",
+        "zh-CN": "搜索和使用 Knowledge V5"
+      },
+      "entry_tools": [
+        "search_knowledge",
+        "retrieve_knowledge_context"
+      ]
+    },
+    {
+      "id": "knowledge_entry",
+      "labels": {
+        "en": "Create or update a Knowledge Entry",
+        "zh-CN": "创建或更新知识条目"
+      },
+      "entry_tools": [
+        "create_knowledge_entry_proposal"
+      ]
+    },
+    {
+      "id": "selected_import",
+      "labels": {
+        "en": "Import selected content",
+        "zh-CN": "导入选定内容"
+      },
+      "entry_tools": [
+        "import_selected_codex_content"
+      ]
+    },
+    {
+      "id": "automation_review",
+      "labels": {
+        "en": "Review my automation tasks",
+        "zh-CN": "查看自动化任务"
+      },
+      "entry_tools": [
+        "list_automation_tasks"
+      ]
+    },
+    {
+      "id": "automation_latest",
+      "labels": {
+        "en": "Run latest note automation tasks",
+        "zh-CN": "执行最近笔记的自动化任务"
+      },
+      "entry_tools": [
+        "list_latest_note_automation_tasks"
+      ]
+    },
+    {
+      "id": "agent_archive",
+      "labels": {
+        "en": "Archive agent outputs to Memova",
+        "zh-CN": "归档 Agent 产出到 Memova"
+      },
+      "entry_tools": [
+        "get_llm_wiki_sync_capabilities"
+      ]
+    },
+    {
+      "id": "resource_files",
+      "labels": {
+        "en": "Find, read, or download Meeting and Spark files",
+        "zh-CN": "查找、读取或下载 Meeting 和 Spark 文件"
+      },
+      "entry_tools": [
+        "search_memova_resources"
+      ]
+    },
+    {
+      "id": "personal_manual_readiness",
+      "labels": {
+        "en": "Check Personal Manual readiness",
+        "zh-CN": "检查个人说明书权限和就绪状态"
+      },
+      "entry_tools": [
+        "get_personal_manual_preflight"
+      ]
+    },
+    {
+      "id": "recent_memories",
+      "labels": {
+        "en": "Search recent meeting memories",
+        "zh-CN": "搜索最近的会议记忆"
+      },
+      "entry_tools": [
+        "search_notes",
+        "list_recent_meetings"
+      ]
+    }
+  ]
+}

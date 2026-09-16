@@ -762,3 +762,22 @@ Inspect the marketplace locally:
 ```bash
 codex plugin marketplace add .
 ```
+
+### Unified menu (1.13.0)
+
+Bare `@memova` shows an offline menu without login or memory access. Version 1.13.0 adds
+Connect Memova, local connection status, Personal Manual readiness, and recent meeting
+search. `get_memova_menu` on MCP contract 1.12.0 supplies account-filtered feature IDs when
+requested and already connected. Older servers retain the offline fallback. Menu selection
+does not authorize publication, history access, or automatic browser OAuth.
+
+The backend owns the shared catalog; before releasing this candidate run:
+
+```bash
+python3 plugins/memova/scripts/check_menu_catalog.py /path/to/memova-backend
+python3 -m unittest discover -s tests -p 'test_memova_menu.py'
+python3 -m unittest discover -s tests -p 'test_public_plugin_boundary.py'
+```
+
+MCP contract numbers and Plugin release numbers are independent. Upgrade the Plugin to 1.13.0 to use these menu routes; restart Codex or create a new task
+if the current task still uses the old skills.
