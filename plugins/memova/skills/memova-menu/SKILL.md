@@ -120,7 +120,7 @@ repeat `@memova`.
   reminder, then follow `plugins/memova/skills/memova-vault-setup/SKILL.md` for setup or
   `plugins/memova/skills/memova-vault-diagnose/SKILL.md` for diagnosis.
 - `9`, "my Sparks", "latest Sparks", "Meeting files", "Spark files", "Markdown", "HTML", or
-  "resource access": Follow
+  "full Spark conversation", "完整对话", "全部内容", or "resource access": Follow
   `plugins/memova/skills/memova-resource-access/SKILL.md`. Discovery and inline reads are
   read-only. Create a short-lived exact-resource download only when the user requests a file or
   inline content is too large.
