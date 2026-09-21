@@ -1,6 +1,6 @@
 interface:
   display_name: "Memova Meeting & Spark Files"
-  short_description: "Find, read, or download your Memova Meeting and Spark files."
+  short_description: "Find Sparks and read or download Meeting and Spark files."
   default_prompt: "Use $memova-resource-access to find and open my latest Memova Meeting or Spark Markdown/HTML file."
 
 policy:

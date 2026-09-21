@@ -1,12 +1,12 @@
 ---
 name: memova-resource-access
-description: Find, read, or download the authenticated user's Memova Meeting Note Markdown, Meeting Overview HTML, and Spark Page Markdown or HTML through the bounded Resource Access V1 MCP surface. Use when the user asks for their own Meeting or Spark files, latest generated output, exact revision, or a downloadable file. Never expose raw database, Blob, tenant, revision, or storage internals by default.
+description: Find or list the authenticated user's Spark conversations, or read and download their Memova Meeting and Spark generated files through bounded MCP tools. Use when the user asks for their own Meeting or Spark files, latest generated output, exact revision, or a downloadable file. Never expose raw database, Blob, tenant, revision, or storage internals by default.
 ---
 
 # Memova Resource Access
 
-Use this skill when the user wants to find, open, read, summarize, or download their own Memova
-Meeting or Spark output. This is a read-only, owner/workspace-scoped resource workflow. It is
+Use this skill when the user wants to find or list their Spark conversations, or open, read,
+summarize, or download their own Memova Meeting or Spark output. This is a read-only, owner/workspace-scoped resource workflow. It is
 independent of Knowledge V5 and does not provide database, SQL, table, Blob-key, filesystem, or
 bulk-export access.
 
@@ -72,10 +72,37 @@ python3 plugins/memova/scripts/mcp_connection_auth.py status
   full Codex restart and a new task so the resource catalog can reload.
 - Do not fall back to Knowledge V5, legacy note tools, guessed URLs, or raw storage access.
 
+## Find or list Spark conversations
+
+For "my Sparks", "latest inspirations", or finding which Spark contains a topic, use
+`search_sparks` (MCP contract `1.13.0` or newer). It requires `resources.read` and `sparks.read`.
+Use an empty `query` for recent Sparks and `limit` for the number of **parent Sparks** requested;
+use topic/title text as `query` for search. Follow `next_cursor` with the same filters only when
+more parent results are needed. `include_closed` defaults to false, matching the App list.
+
+Present exactly one item per returned `spark_id`, with its unchanged parent `title`. A Spark with
+no generated Pages is still a Spark. Never merge different Spark IDs merely because their titles
+match. Child `pages` explain matching material; `source_kind` and `scope` identify its origin,
+`matched` marks a Page hit, and `formats` groups exact Markdown/HTML URIs for that same Page.
+Read or download the selected child format with the existing resource tools. Do not invent a
+replacement title or label a selected reply as the complete discussion.
+
+`pages_truncated` and `page_count` explicitly indicate a bounded child list. When more children
+are needed, request that `spark_id` with a larger `page_limit` (maximum 50); if still truncated,
+report that limitation rather than claiming the list is complete. Parent pagination is independent
+of Page/format counts. Search covers parent titles and latest successful Page titles/source text;
+it does not claim full recall over all conversation messages or older Page versions.
+
+If `search_sparks` is unavailable, explain that this backend does not expose parent Spark search
+in the current catalog and follow the capability checks above. Do not substitute Page discovery
+or `search_notes` and call their results a complete Spark list. For an explicit file request,
+the existing Page resource workflow remains available.
+
 ## Discover resources
 
-Use `search_memova_resources` for bounded discovery. Do not guess object IDs or construct a URI
-from a title.
+Use `search_memova_resources` for bounded **file/resource** discovery, not Spark conversation
+listing. Its `spark_page` results are generated Pages/formats and must not be counted as Sparks.
+Do not guess object IDs or construct a URI from a title.
 
 Map user intent to the registered V1 resource filters:
 
