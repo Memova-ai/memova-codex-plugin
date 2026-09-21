@@ -119,7 +119,8 @@ repeat `@memova`.
 - `8` or "legacy vault": Ask whether the user wants setup or diagnosis. Run the one-time legacy
   reminder, then follow `plugins/memova/skills/memova-vault-setup/SKILL.md` for setup or
   `plugins/memova/skills/memova-vault-diagnose/SKILL.md` for diagnosis.
-- `9`, "Meeting files", "Spark files", "Markdown", "HTML", or "resource access": Follow
+- `9`, "my Sparks", "latest Sparks", "Meeting files", "Spark files", "Markdown", "HTML", or
+  "resource access": Follow
   `plugins/memova/skills/memova-resource-access/SKILL.md`. Discovery and inline reads are
   read-only. Create a short-lived exact-resource download only when the user requests a file or
   inline content is too large.
