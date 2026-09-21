@@ -781,3 +781,14 @@ python3 -m unittest discover -s tests -p 'test_public_plugin_boundary.py'
 
 MCP contract numbers and Plugin release numbers are independent. Upgrade the Plugin to 1.13.0 to use these menu routes; restart Codex or create a new task
 if the current task still uses the old skills.
+
+
+### Spark conversation search (1.14.0)
+
+Finding or listing Sparks now uses `search_sparks` (MCP contract 1.13.0+): one result per
+Spark, including those without generated Pages. Page titles and source kinds appear beneath
+the original Spark title, and Markdown/HTML are grouped as formats of the same Page.
+Search matches parent titles and latest successful Page titles/source text; it does not
+claim full conversation-history recall. Existing file discovery, reads and downloads retain
+their Resource Access V1 contract. Older servers without `search_sparks` report that capability
+as unavailable instead of treating Page results as a complete Spark list.
