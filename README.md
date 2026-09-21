@@ -792,3 +792,10 @@ Search matches parent titles and latest successful Page titles/source text; it d
 claim full conversation-history recall. Existing file discovery, reads and downloads retain
 their Resource Access V1 contract. Older servers without `search_sparks` report that capability
 as unavailable instead of treating Page results as a complete Spark list.
+
+### Complete Spark conversations (1.15.0)
+
+`get_spark_conversation` (MCP 1.14.0+) reads every current message in sequence order, including
+historical operation commands, without rewriting or dropping content. The plugin follows all
+pages and verifies completeness; concurrent edits require a restart. Generated Pages are separate
+outputs, not a substitute for the conversation. This does not expose historical edits or run internals.
