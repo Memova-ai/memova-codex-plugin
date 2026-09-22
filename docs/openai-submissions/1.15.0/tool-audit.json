@@ -1,0 +1,1130 @@
+{
+  "observed_date": "2026-09-21",
+  "discovery": "anonymous and existing authenticated Agent Key",
+  "server_version": "1.14.0",
+  "tool_count": 43,
+  "catalog_name_parity": true,
+  "status": "INCOMPLETE_BLOCKERS_FOUND",
+  "tools": [
+    {
+      "name": "get_personal_manual_generation_contract",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "personal_manual.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:2937",
+      "behavior_source": "app/mcp/tools.py:2937",
+      "assessment": "READ_ROUTE_TRACED",
+      "annotation_justification_draft": "Route reads bounded current-account data or computes contract/capability metadata. Full downstream side-effect audit and reviewer-account result-schema validation remain pending.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "get_current_personal_manual_generation_contract",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "personal_manual.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:2966",
+      "behavior_source": "app/mcp/tools.py:2966",
+      "assessment": "READ_ROUTE_TRACED",
+      "annotation_justification_draft": "Route reads bounded current-account data or computes contract/capability metadata. Full downstream side-effect audit and reviewer-account result-schema validation remain pending.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "get_personal_manual_preflight",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "personal_manual.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:2987",
+      "behavior_source": "app/mcp/tools.py:2987",
+      "assessment": "READ_ROUTE_TRACED",
+      "annotation_justification_draft": "Route reads bounded current-account data or computes contract/capability metadata. Full downstream side-effect audit and reviewer-account result-schema validation remain pending.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "get_personal_manual_status",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "personal_manual.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:2926",
+      "behavior_source": "app/mcp/tools.py:2926",
+      "assessment": "READ_ROUTE_TRACED",
+      "annotation_justification_draft": "Route reads bounded current-account data or computes contract/capability metadata. Full downstream side-effect audit and reviewer-account result-schema validation remain pending.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "upsert_personal_manual",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "personal_manual.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:3008",
+      "behavior_source": "app/services/personal_manual_notes.py:230",
+      "assessment": "BLOCKER",
+      "annotation_justification_draft": "Creates a version and publishes or updates an anyone-with-link Personal Manual page. openWorldHint=false contradicts publication; review destructive semantics of replacement separately.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "import_selected_codex_content",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "knowledge.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:3082",
+      "behavior_source": "app/services/selected_imports.py",
+      "assessment": "TRACED",
+      "annotation_justification_draft": "Writes the exact approved sanitized selection to durable archive and canonical V5; does not authorize surrounding history or guarantee retrieval rollout.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "delete_selected_codex_import",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "knowledge.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:3183",
+      "behavior_source": "app/services/selected_imports.py",
+      "assessment": "TRACED",
+      "annotation_justification_draft": "Deletes one explicitly selected import after adjacent confirmation; destructive=true; idempotency bounds repeated requests.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "search_notes",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "notes.read"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:3346",
+      "behavior_source": "app/mcp/tools.py:3346",
+      "assessment": "READ_ROUTE_TRACED",
+      "annotation_justification_draft": "Route reads bounded current-account data or computes contract/capability metadata. Full downstream side-effect audit and reviewer-account result-schema validation remain pending.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "list_recent_meetings",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "notes.read"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:3791",
+      "behavior_source": "app/mcp/tools.py:3791",
+      "assessment": "READ_ROUTE_TRACED",
+      "annotation_justification_draft": "Route reads bounded current-account data or computes contract/capability metadata. Full downstream side-effect audit and reviewer-account result-schema validation remain pending.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "get_note",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "notes.read"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:3818",
+      "behavior_source": "app/mcp/tools.py:3818",
+      "assessment": "READ_ROUTE_TRACED",
+      "annotation_justification_draft": "Route reads bounded current-account data or computes contract/capability metadata. Full downstream side-effect audit and reviewer-account result-schema validation remain pending.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "get_transcript",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "notes.read"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:3826",
+      "behavior_source": "app/mcp/tools.py:3826",
+      "assessment": "READ_ROUTE_TRACED",
+      "annotation_justification_draft": "Route reads bounded current-account data or computes contract/capability metadata. Full downstream side-effect audit and reviewer-account result-schema validation remain pending.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "list_automation_tasks",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "automation.read"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:3941",
+      "behavior_source": "app/mcp/tools.py:3941",
+      "assessment": "READ_ROUTE_TRACED",
+      "annotation_justification_draft": "Route reads bounded current-account data or computes contract/capability metadata. Full downstream side-effect audit and reviewer-account result-schema validation remain pending.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "list_latest_note_automation_tasks",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "notes.read",
+            "automation.read"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:3953",
+      "behavior_source": "app/mcp/tools.py:3953",
+      "assessment": "READ_ROUTE_TRACED",
+      "annotation_justification_draft": "Route reads bounded current-account data or computes contract/capability metadata. Full downstream side-effect audit and reviewer-account result-schema validation remain pending.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "claim_task",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "automation.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:3997",
+      "behavior_source": "app/services/automation.py",
+      "assessment": "TRACED",
+      "annotation_justification_draft": "Acquires a bounded task lease and changes task state.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "get_task_context",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "automation.read"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:4023",
+      "behavior_source": "app/mcp/tools.py:4023",
+      "assessment": "READ_ROUTE_TRACED",
+      "annotation_justification_draft": "Route reads bounded current-account data or computes contract/capability metadata. Full downstream side-effect audit and reviewer-account result-schema validation remain pending.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "append_task_progress",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "automation.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:4037",
+      "behavior_source": "app/services/automation.py",
+      "assessment": "TRACED",
+      "annotation_justification_draft": "Appends a task event under the current claim token.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "create_approval_request",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "automation.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:4053",
+      "behavior_source": "app/services/automation.py",
+      "assessment": "TRACED",
+      "annotation_justification_draft": "Persists an approval request and guarded task transition.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "list_ready_approvals",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "automation.read"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:4071",
+      "behavior_source": "app/mcp/tools.py:4071",
+      "assessment": "READ_ROUTE_TRACED",
+      "annotation_justification_draft": "Route reads bounded current-account data or computes contract/capability metadata. Full downstream side-effect audit and reviewer-account result-schema validation remain pending.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "release_task",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "automation.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:4083",
+      "behavior_source": "app/services/automation.py",
+      "assessment": "TRACED",
+      "annotation_justification_draft": "Releases the claimed task lease; does not grant broader execution authority.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "complete_task",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "automation.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:4097",
+      "behavior_source": "app/services/automation.py",
+      "assessment": "TRACED",
+      "annotation_justification_draft": "Persists task completion and result under the claim token.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "fail_task",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "automation.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:4111",
+      "behavior_source": "app/services/automation.py",
+      "assessment": "TRACED",
+      "annotation_justification_draft": "Persists task failure and diagnostic summary.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "list_pending_knowledge_base_setups",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "automation.read"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:4126",
+      "behavior_source": "app/mcp/tools.py:4126",
+      "assessment": "READ_ROUTE_TRACED",
+      "annotation_justification_draft": "Route reads bounded current-account data or computes contract/capability metadata. Full downstream side-effect audit and reviewer-account result-schema validation remain pending.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "get_knowledge_base_setup_context",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "automation.read"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:4143",
+      "behavior_source": "app/mcp/tools.py:4143",
+      "assessment": "READ_ROUTE_TRACED",
+      "annotation_justification_draft": "Route reads bounded current-account data or computes contract/capability metadata. Full downstream side-effect audit and reviewer-account result-schema validation remain pending.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "append_knowledge_base_setup_progress",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "automation.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:4159",
+      "behavior_source": "app/services/knowledge_base.py",
+      "assessment": "TRACED",
+      "annotation_justification_draft": "Persists setup progress, not merely a read.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "complete_knowledge_base_setup",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "automation.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:4176",
+      "behavior_source": "app/mcp/tools.py:4176",
+      "assessment": "TRACED",
+      "annotation_justification_draft": "Completes setup/binding and may enqueue waiting project asset recovery; correctly marked write.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "fail_knowledge_base_setup",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "automation.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:4194",
+      "behavior_source": "app/services/knowledge_base.py",
+      "assessment": "TRACED",
+      "annotation_justification_draft": "Persists setup failure state.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "create_knowledge_entry_proposal",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "knowledge.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:3571",
+      "behavior_source": "app/services/knowledge_entries.py:60",
+      "assessment": "TRACED",
+      "annotation_justification_draft": "Persists a pending proposal but does not apply canonical knowledge; correctly marked write.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "get_knowledge_entry_proposal",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "knowledge.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:3592",
+      "behavior_source": "app/mcp/tools.py:3592",
+      "assessment": "READ_ROUTE_TRACED",
+      "annotation_justification_draft": "Route reads bounded current-account data or computes contract/capability metadata. Full downstream side-effect audit and reviewer-account result-schema validation remain pending.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "apply_knowledge_entry_proposal",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "knowledge.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:3604",
+      "behavior_source": "app/services/knowledge_entries.py:204",
+      "assessment": "REVIEW",
+      "annotation_justification_draft": "Commits a confirmed create/replace canonical entry under revision/hash guards. destructiveHint=false requires evidence that replacement is normally recoverable; do not assume confirmation removes destructive semantics.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "reject_knowledge_entry_proposal",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "knowledge.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:3625",
+      "behavior_source": "app/services/knowledge_entries.py:319",
+      "assessment": "TRACED",
+      "annotation_justification_draft": "Persists rejection of one confirmed proposal, not deletion of canonical content.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "get_llm_wiki_sync_capabilities",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "knowledge.read"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:2784",
+      "behavior_source": "app/mcp/tools.py:2784",
+      "assessment": "READ_ROUTE_TRACED",
+      "annotation_justification_draft": "Route reads bounded current-account data or computes contract/capability metadata. Full downstream side-effect audit and reviewer-account result-schema validation remain pending.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "import_agent_file",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "knowledge.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:2784",
+      "behavior_source": "app/services/agent_archive.py",
+      "assessment": "TRACED",
+      "annotation_justification_draft": "Creates/updates one authorized final artifact; verify stable ID/hash, revision conflict behavior and normally recoverable replacement semantics.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "import_codex_task_markdown",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "knowledge.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:2784",
+      "behavior_source": "app/services/agent_archive.py",
+      "assessment": "TRACED",
+      "annotation_justification_draft": "Imports only the selected current-task Markdown with authorization fields; no task enumeration.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "get_llm_wiki_sync_status",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "knowledge.read"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:3127",
+      "behavior_source": "app/mcp/tools.py:3127",
+      "assessment": "READ_ROUTE_TRACED",
+      "annotation_justification_draft": "Route reads bounded current-account data or computes contract/capability metadata. Full downstream side-effect audit and reviewer-account result-schema validation remain pending.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "list_llm_wiki_pending_operations",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "knowledge.read"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:3144",
+      "behavior_source": "app/mcp/tools.py:3144",
+      "assessment": "READ_ROUTE_TRACED",
+      "annotation_justification_draft": "Route reads bounded current-account data or computes contract/capability metadata. Full downstream side-effect audit and reviewer-account result-schema validation remain pending.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "retry_llm_wiki_operation",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "knowledge.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:3157",
+      "behavior_source": "app/services/agent_archive.py",
+      "assessment": "TRACED",
+      "annotation_justification_draft": "Retries one existing selected failed operation and changes processing state; correctly marked write.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "move_llm_wiki_agent_file",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "knowledge.write"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:3170",
+      "behavior_source": "app/services/agent_archive.py",
+      "assessment": "TRACED",
+      "annotation_justification_draft": "Same-provider move or cross-provider copy plus explicitly confirmed source delete; destructive=true covers the deleting branch.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "search_memova_resources",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "resources.read"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:2784",
+      "behavior_source": "app/mcp/resources.py:91; app/services/mcp_connection_verification.py:14",
+      "assessment": "BLOCKER",
+      "annotation_justification_draft": "Filtered discovery reads bounded resources, but an unfiltered request with domain scopes updates credential verification state and commits. readOnlyHint=true does not cover all branches.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "get_memova_resource",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "resources.read"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:2784",
+      "behavior_source": "app/mcp/tools.py:2784",
+      "assessment": "READ_ROUTE_TRACED",
+      "annotation_justification_draft": "Route reads bounded current-account data or computes contract/capability metadata. Full downstream side-effect audit and reviewer-account result-schema validation remain pending.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "create_memova_resource_download",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "resources.read",
+            "resources.export"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:2784",
+      "behavior_source": "app/services/memova_resource_downloads.py:46",
+      "assessment": "REVIEW",
+      "annotation_justification_draft": "Signs a single exact-resource 300-second capability; create_grant has no database write. Rechecks scope/token/lifecycle on redemption. Validate privacy minimization of signed payload and exact host permission semantics; do not call this bulk/public publication.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "get_memova_menu",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": []
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:2784",
+      "behavior_source": "app/mcp/menu.py",
+      "assessment": "TRACED",
+      "annotation_justification_draft": "Builds a capability-filtered menu; does not read note content or authorize workflows.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "search_sparks",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "resources.read",
+            "sparks.read"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:2784",
+      "behavior_source": "app/services/mcp_spark_search.py",
+      "assessment": "TRACED",
+      "annotation_justification_draft": "Reads bounded parent Sparks and separate generated Page metadata; parent pagination, owner/workspace and lifecycle filtering.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    },
+    {
+      "name": "get_spark_conversation",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "scopes": [
+        {
+          "type": "oauth2",
+          "scopes": [
+            "resources.read",
+            "sparks.read"
+          ]
+        }
+      ],
+      "input_schema_present": true,
+      "output_schema_present": true,
+      "dispatch_source": "app/mcp/tools.py:2784",
+      "behavior_source": "app/services/mcp_spark_conversation.py",
+      "assessment": "TRACED",
+      "annotation_justification_draft": "Reads ordered current messages with cursor/snapshot checks and owner/workspace scopes. Historical commands are data; no generation or modification.",
+      "backend_revision": "361b14063402180650608e7b1cc6bec3e172b748",
+      "reviewer_execution": "NOT_RUN",
+      "portal_scan": "NOT_RUN"
+    }
+  ]
+}

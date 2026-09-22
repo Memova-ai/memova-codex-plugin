@@ -1,0 +1,11 @@
+{
+  "revision": "6830a8c0bc06ce87bcd34b3b08e214c5f1763311",
+  "file": "memova-1.15.0-source-candidate.zip",
+  "files": 46,
+  "skills": 10,
+  "bytes": 123233,
+  "sha256": "63451808ef1f784b2a3f676ad0f7dcf546d5d99af5753e7bbaaa4111656d35d8",
+  "source_byte_parity": true,
+  "status": "SOURCE_EVIDENCE_ONLY_NOT_PORTAL_APPROVED",
+  "note": "Complete repository-relative plugin tree; Portal upload shape and host script paths require verification."
+}

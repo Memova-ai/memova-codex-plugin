@@ -19,8 +19,7 @@
         "zh-CN": "搜索和使用 Knowledge V5"
       },
       "entry_tools": [
-        "search_knowledge",
-        "retrieve_knowledge_context"
+        "search_notes"
       ]
     },
     {

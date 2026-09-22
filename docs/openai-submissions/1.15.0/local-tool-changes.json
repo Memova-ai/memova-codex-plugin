@@ -1,0 +1,50 @@
+{
+  "status": "LOCAL_VALIDATED_NOT_DEPLOYED",
+  "backend_base": "fb756f1e94d680bfc37249eb64caa1ac7b2605fb",
+  "changes": [
+    {
+      "tool": "upsert_personal_manual",
+      "field": "annotations",
+      "before": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "after": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "tool": "search_notes",
+      "field": "description",
+      "before": "Search the current user's Memova meeting notes, note summaries, transcripts, optional Memory Palace context, and\u2014when knowledge.read is granted\u2014Knowledge V5 objects such as Codex sessions, projects, knowledge entries, and manuals. Use this as the unified recall entry point for note content, imported knowledge, meetings, decisions, summaries, or follow-ups. Do not use this to check whether a knowledge-base setup session is ready; use list_pending_knowledge_base_setups for setup/vault/folder onboarding requests.",
+      "after": "Search the current user's Memova meeting notes, note summaries, transcripts, optional Memory Palace context, and\u2014when knowledge.read is granted\u2014Knowledge V5 objects such as Codex sessions, projects, knowledge entries, and manuals. Use this as the unified recall entry point for note content, imported knowledge, meetings, decisions, summaries, or follow-ups. V5 results are bounded excerpts, not complete documents. Respect knowledge_v5 retrieval gates, truncation, and source revisions; ordinary note hits do not prove V5 availability. Do not use this to check whether a knowledge-base setup session is ready; use list_pending_knowledge_base_setups for setup/vault/folder onboarding requests."
+    },
+    {
+      "tool": "search_memova_resources",
+      "field": "annotations",
+      "before": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "after": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "tool": "search_memova_resources",
+      "field": "description",
+      "before": "Discover bounded, exact-revision Meeting Note, Meeting Overview, and Spark Page resources owned by the authenticated user. Results contain untrusted content descriptors and MCP resource links, never storage keys or download grants.",
+      "after": "Discover bounded, exact-revision Meeting Note, Meeting Overview, and Spark Page resources owned by the authenticated user. Results contain untrusted content descriptors and MCP resource links, never storage keys or download grants. An unfiltered discovery with Meeting and Spark read scopes also records the connection verification result; it does not modify business content."
+    }
+  ]
+}

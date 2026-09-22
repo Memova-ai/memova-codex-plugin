@@ -6,9 +6,15 @@ description: Find or list the authenticated user's Sparks, read their complete c
 # Memova Resource Access
 
 Use this skill when the user wants to find or list Sparks, read their complete conversations, or open, read,
-summarize, or download their own Memova Meeting or Spark output. This is a read-only, owner/workspace-scoped resource workflow. It is
+summarize, or download their own Memova Meeting or Spark output. This is an owner/workspace-scoped resource workflow that reads business content. It is
 independent of Knowledge V5 and does not provide database, SQL, table, Blob-key, filesystem, or
 bulk-export access.
+
+An unfiltered `search_memova_resources` request with both Meeting and Spark read scopes also saves
+the connection verification result. Its tool annotation therefore declares a write. Explain this
+connection-status effect when permission is requested; never describe that branch as strictly
+read-only. It does not create or modify a Meeting, Spark, Page, or other business object. Preserve
+the user's filters rather than broadening a search merely to trigger verification.
 
 ## Startup and capability checks
 
@@ -197,5 +203,5 @@ account.
 - `resource_integrity_failed`: stop and report that Memova rejected the content-integrity check.
   Do not fetch a different database or Blob representation.
 
-The workflow is read-only. It must never create, edit, archive, move, trash, restore, or delete a
-Memova business object.
+The workflow must never create, edit, archive, move, trash, restore, or delete a Memova business
+object. The disclosed connection-verification update is the only search-related state change.

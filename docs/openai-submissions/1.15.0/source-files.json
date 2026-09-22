@@ -1,0 +1,235 @@
+{
+  "revision": "6830a8c0bc06ce87bcd34b3b08e214c5f1763311",
+  "files": [
+    {
+      "path": "plugins/memova/.codex-plugin/plugin.json",
+      "bytes": 2828,
+      "sha256": "e0dbfddd4fe17ec806e46f30cea2abef5d690655337e498cb27ee6df356316d1"
+    },
+    {
+      "path": "plugins/memova/.mcp.json",
+      "bytes": 317,
+      "sha256": "12cfce1372bb78e058a99511d91ae4355ba547ffd2bb1b8d5b2d9e0833d86d98"
+    },
+    {
+      "path": "plugins/memova/assets/icon.svg",
+      "bytes": 685,
+      "sha256": "54bd50b6408ef5c658fe724373919e3edbb220232ebd6938ab69c0517f72e7f7"
+    },
+    {
+      "path": "plugins/memova/assets/logo.svg",
+      "bytes": 866,
+      "sha256": "427a49d8196f8daf05e6f948d43670f801040e3596261d7be902cdd6223897db"
+    },
+    {
+      "path": "plugins/memova/contracts/resource_access_plugin_binding_v1.json",
+      "bytes": 3406,
+      "sha256": "ca0e91ab63d1d80d92593d24db60e62911e9c96c1316e07391654b66f274e9be"
+    },
+    {
+      "path": "plugins/memova/contracts/upstream/memova_resource_access_v1.json",
+      "bytes": 9185,
+      "sha256": "6bef5e8c35934a2ff9d6a0dd55c7d70470ced995337f28f6c3b083ed28a4c78d"
+    },
+    {
+      "path": "plugins/memova/menu_catalog.json",
+      "bytes": 2551,
+      "sha256": "efdf0acb4a5fd93ce1261dcec85f3bfae3e4852cbf304d300fe8c2961db8d546"
+    },
+    {
+      "path": "plugins/memova/scripts/agent_archive.py",
+      "bytes": 15116,
+      "sha256": "7ef5fe9d8292847c59543395104ec80709aedd56a992718ecefec793dd1f67c9"
+    },
+    {
+      "path": "plugins/memova/scripts/check_menu_catalog.py",
+      "bytes": 638,
+      "sha256": "d89afb741c7f73a2ac3857f3379268f00c61eec05ae2e8700738e440477bbe2f"
+    },
+    {
+      "path": "plugins/memova/scripts/ensure_mcp_login.py",
+      "bytes": 20246,
+      "sha256": "dd2ce35ecaa4ce7ec8f249ab962660f134515f9adcb5d714dd5e33222039bf92"
+    },
+    {
+      "path": "plugins/memova/scripts/kb_setup_reminder.py",
+      "bytes": 5470,
+      "sha256": "cdb69e55bcf1faa65fa6664a4bd6a91abf7f9ab11db0ff7be5245c4c2a713fe5"
+    },
+    {
+      "path": "plugins/memova/scripts/mcp_connection_auth.py",
+      "bytes": 21361,
+      "sha256": "3df8962e9d5c66a5298d9a9e6cbdc4d17755cc9d73d2f139bc3ee26256ed9bc2"
+    },
+    {
+      "path": "plugins/memova/scripts/mcp_credential_store.py",
+      "bytes": 13043,
+      "sha256": "106077ee2270b0168ff15a7caded91da9fad252f1c1164b6e1d4228028b1712b"
+    },
+    {
+      "path": "plugins/memova/scripts/memova_menu.py",
+      "bytes": 2503,
+      "sha256": "a31d626d81f92189782138cd438a7c070e4bb0104d4a47ad2024013816cf7c66"
+    },
+    {
+      "path": "plugins/memova/scripts/validate_resource_access_contract.py",
+      "bytes": 19271,
+      "sha256": "130b4b179e301d7b0984822721c1c9633ff824c7e00f280f89fb98f1aebe486e"
+    },
+    {
+      "path": "plugins/memova/scripts/version_check.py",
+      "bytes": 10129,
+      "sha256": "431220554511a5ffc66b14ac414259dbc50f24e97a050358fb35e1cc19b4c72e"
+    },
+    {
+      "path": "plugins/memova/skills/memova-agent-archive/SKILL.md",
+      "bytes": 6335,
+      "sha256": "f5acafcc0aded82b7173384f3be02bf2be31ab85b0842a15828c29e40c5539d1"
+    },
+    {
+      "path": "plugins/memova/skills/memova-agent-archive/agents/openai.yaml",
+      "bytes": 463,
+      "sha256": "080bd0c786e329c6538576681bc233bebcc0419dfa0dc34e78a7dd056bd46fec"
+    },
+    {
+      "path": "plugins/memova/skills/memova-connect/SKILL.md",
+      "bytes": 3181,
+      "sha256": "8254a65d2ebe8a9e518fc0be28b0494a3b002e61d2b540812579fdf2b04ac19b"
+    },
+    {
+      "path": "plugins/memova/skills/memova-connect/agents/openai.yaml",
+      "bytes": 248,
+      "sha256": "7265de61625ee0b57733e64ab4807ac422a15bfd96a35b609f012c666cba3d71"
+    },
+    {
+      "path": "plugins/memova/skills/memova-explicit-import/SKILL.md",
+      "bytes": 7700,
+      "sha256": "a9846d3d749b53a822c2b955cb75974dee16bfea84c33be3e2aba4170b6a318e"
+    },
+    {
+      "path": "plugins/memova/skills/memova-explicit-import/agents/openai.yaml",
+      "bytes": 483,
+      "sha256": "eb925da8a56261a8efb3869710fdba83fd4641da830acb3544c2c17145c4c115"
+    },
+    {
+      "path": "plugins/memova/skills/memova-explicit-import/scripts/preview_selected_import.py",
+      "bytes": 7909,
+      "sha256": "f4f01224c0b245dcb7ec5021714162293c758b8a1b7ec7d468ac1b197d9d06fb"
+    },
+    {
+      "path": "plugins/memova/skills/memova-knowledge/SKILL.md",
+      "bytes": 3483,
+      "sha256": "3666a3065557553b206136f2f751e5cce01708f56f44f79a1ffbc5487a390d89"
+    },
+    {
+      "path": "plugins/memova/skills/memova-knowledge/agents/openai.yaml",
+      "bytes": 496,
+      "sha256": "5b2b81d6559f0d588fb352b303082607953d0cac2b2bc093210862253c68998a"
+    },
+    {
+      "path": "plugins/memova/skills/memova-menu/SKILL.md",
+      "bytes": 8862,
+      "sha256": "b27cfeb4e2f9e03d478f0a91f24347d9ef3f1172b97ba5a77c8ec3814255741c"
+    },
+    {
+      "path": "plugins/memova/skills/memova-menu/agents/openai.yaml",
+      "bytes": 204,
+      "sha256": "a3543b03bd48af221f0f0354f37fc32d5062bbf38c34993d8dad4cf3be05b1ee"
+    },
+    {
+      "path": "plugins/memova/skills/memova-personal-manual/SKILL.md",
+      "bytes": 11321,
+      "sha256": "5e2ee8b0ae48ac8a469dc61de899e515e0356f48115cd7fa6371cb7a6d2f9b7d"
+    },
+    {
+      "path": "plugins/memova/skills/memova-personal-manual/agents/openai.yaml",
+      "bytes": 536,
+      "sha256": "409d332354b3bfbbd1a30e2262ad44cb393774360e067d359c196ccd4dbf7d9a"
+    },
+    {
+      "path": "plugins/memova/skills/memova-personal-manual/references/local-artifacts.md",
+      "bytes": 1914,
+      "sha256": "b7aa91d7a130338792a57cbe2937aea23fe6c94f7389dee3c7bd01035854dfa6"
+    },
+    {
+      "path": "plugins/memova/skills/memova-personal-manual/scripts/prepare_personal_manual.py",
+      "bytes": 19703,
+      "sha256": "51cd409550a765c45b0fa3e78c9eb7309d308c769ac5aa83443f46616644bcc8"
+    },
+    {
+      "path": "plugins/memova/skills/memova-resource-access/SKILL.md",
+      "bytes": 12951,
+      "sha256": "2ade0bba95ff8c2aba99351e1d346603563888447e81fd14627ad4035b96863d"
+    },
+    {
+      "path": "plugins/memova/skills/memova-resource-access/agents/openai.yaml",
+      "bytes": 580,
+      "sha256": "8f089f456a2cf60ce08dd3f006f8c835255c1b6b7f2f07af54aedc7c75c42d08"
+    },
+    {
+      "path": "plugins/memova/skills/memova-vault-diagnose/SKILL.md",
+      "bytes": 4809,
+      "sha256": "b4c38e582baeb21e69ec8b04d5efa690739989a38c82468d1d3ad19465203a34"
+    },
+    {
+      "path": "plugins/memova/skills/memova-vault-diagnose/agents/openai.yaml",
+      "bytes": 469,
+      "sha256": "cc32fa628fb4f5c3c91f750dcf72bfdf4704fda2efb33dd1281f11b5ecaf49b6"
+    },
+    {
+      "path": "plugins/memova/skills/memova-vault-setup/SKILL.md",
+      "bytes": 12497,
+      "sha256": "3c4410dac28396080939f749581e42a7ce67fa704975f7d4b19aa8eee31d4537"
+    },
+    {
+      "path": "plugins/memova/skills/memova-vault-setup/agents/openai.yaml",
+      "bytes": 475,
+      "sha256": "0c1cbe0d82408b2b2c885f90b70d0a85bcb34ec0ac20a17386c5220af5189841"
+    },
+    {
+      "path": "plugins/memova/skills/memova-vault-setup/scripts/create_memova_vault.py",
+      "bytes": 4151,
+      "sha256": "3272b0f7f648e402f5035e5f10b75ca18fd143c86031fa470bd162a17e054c22"
+    },
+    {
+      "path": "plugins/memova/skills/memova-vault-setup/scripts/diagnose_memova_vault.py",
+      "bytes": 8060,
+      "sha256": "b4d6501f56f865473cda4aa7ca188735338011f7c962795bd0b4145a1e8e95a8"
+    },
+    {
+      "path": "plugins/memova/skills/memova-vault-setup/scripts/find_vault_locations.py",
+      "bytes": 1965,
+      "sha256": "850c56ae9b5aa729964d2eb7e22a0ff7d37fd8d2fe89e0e6bc6d469caa6c5bd6"
+    },
+    {
+      "path": "plugins/memova/skills/memova-vault-setup/scripts/inspect_vault.py",
+      "bytes": 748,
+      "sha256": "7515a4d226c3a8acecfc662fb573e64a136f60aedb2460f6ed8afef212abee18"
+    },
+    {
+      "path": "plugins/memova/skills/memova-vault-setup/scripts/memova_vault_lib.py",
+      "bytes": 97146,
+      "sha256": "0d7977b3485222bbebf7cf6520c01b0c55712679a7939c30689b729bcbe23bef"
+    },
+    {
+      "path": "plugins/memova/skills/memova-vault-setup/scripts/setup_fixture_harness.py",
+      "bytes": 50807,
+      "sha256": "605d8d19a51b551611bca2cdd612651e27a490a66d9f9b5958d39d876e27e3a6"
+    },
+    {
+      "path": "plugins/memova/skills/memova-vault-setup/scripts/validate_memova_vault.py",
+      "bytes": 2681,
+      "sha256": "0c0632e1a8e192fae3b9802501cc298a2c3887ce63a552a469e32b83d6737269"
+    },
+    {
+      "path": "plugins/memova/skills/memova-workflow/SKILL.md",
+      "bytes": 10156,
+      "sha256": "7b98b4534cdec921a6b82f422f445a46d3a4f78cbb4feeabdfee1b3b924cb264"
+    },
+    {
+      "path": "plugins/memova/skills/memova-workflow/agents/openai.yaml",
+      "bytes": 445,
+      "sha256": "ade51e2a4a35f1ce6b1d05bda9d183ce58a10aedeab183bedc6382fbe5b47bbd"
+    }
+  ]
+}

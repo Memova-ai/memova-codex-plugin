@@ -35,7 +35,13 @@ HTML. The same three MCP tools are available to direct MCP clients without the P
 gateway is independent of Knowledge V5, enforces owner/workspace and domain scopes, treats file
 content as untrusted data, and exposes neither database/SQL access nor Blob/storage paths. Inline
 text is limited to 100,000 UTF-8 bytes without silent truncation; exact single-file download links
-expire after 300 seconds. V1 deliberately excludes writes and bulk account export.
+expire after 300 seconds. V1 excludes business-content writes and bulk account export. Unfiltered
+resource discovery also records the connection verification result and is annotated as a write.
+
+Knowledge V5 recall uses the existing unified `search_notes` entry point with `scope=all` and
+bounded results, subject to the credential's `knowledge.read` scope and the server's read rollout.
+It does not require enabling retired graph tools. Returned V5 excerpts, ordinary note hits, and
+coverage/refusal signals remain distinct; search snippets are not complete documents.
 
 Version `1.10.0` adds P9 Agent archiving. Eligible current-task final Markdown, HTML, and text
 outputs are copied to `projects/Uncategorized/`, submitted through the versioned MCP archive
@@ -792,6 +798,13 @@ Search matches parent titles and latest successful Page titles/source text; it d
 claim full conversation-history recall. Existing file discovery, reads and downloads retain
 their Resource Access V1 contract. Older servers without `search_sparks` report that capability
 as unavailable instead of treating Page results as a complete Spark list.
+
+### Submission contract fixes (1.15.1)
+
+- Route Knowledge V5 searches through the existing scoped `search_notes` entry point.
+- Preserve bounded V5 citation, source revision, truncation and refusal semantics; do not treat excerpts as complete documents.
+- Disclose the connection-verification status write made by unfiltered resource discovery.
+- The coordinated backend patch explicitly annotates Personal Manual link publication as open-world interaction.
 
 ### Complete Spark conversations (1.15.0)
 
