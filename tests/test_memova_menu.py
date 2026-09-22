@@ -1,4 +1,5 @@
 import importlib.util
+import json
 import unittest
 from pathlib import Path
 
@@ -11,6 +12,18 @@ spec.loader.exec_module(menu)
 
 
 class MenuTests(unittest.TestCase):
+    def test_unified_recall_catalog_keeps_fixed_knowledge_route_without_graph(self):
+        catalog = json.loads(menu.CATALOG.read_text())
+        feature = next(f for f in catalog["features"] if f["id"] == "knowledge_search")
+        self.assertEqual(feature["entry_tools"], ["search_notes"])
+        for locale in ("en", "zh-CN"):
+            result = menu.render_menu(locale, server_menu={
+                "schema_version": 1, "features": [feature],
+            })
+            knowledge = next(o for o in result["options"] if o["id"] == "knowledge_search")
+            self.assertEqual(knowledge["number"], 2)
+            self.assertEqual(result["readiness"], "not_checked")
+
     def test_offline_menu_has_all_routes_and_no_readiness_claim(self):
         result = menu.render_menu("zh-CN")
         self.assertEqual(len(result["options"]), 13)

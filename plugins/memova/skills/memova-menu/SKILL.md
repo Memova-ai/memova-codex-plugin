@@ -121,8 +121,8 @@ repeat `@memova`.
   `plugins/memova/skills/memova-vault-diagnose/SKILL.md` for diagnosis.
 - `9`, "my Sparks", "latest Sparks", "Meeting files", "Spark files", "Markdown", "HTML", or
   "full Spark conversation", "完整对话", "全部内容", or "resource access": Follow
-  `plugins/memova/skills/memova-resource-access/SKILL.md`. Discovery and inline reads are
-  read-only. Create a short-lived exact-resource download only when the user requests a file or
+  `plugins/memova/skills/memova-resource-access/SKILL.md`. Inline reads do not change business
+  content; unfiltered resource discovery also records connection verification. Create a short-lived exact-resource download only when the user requests a file or
   inline content is too large.
 - `10` / `connect`: Follow `plugins/memova/skills/memova-connect/SKILL.md`. If no credential
   was supplied, request a new one-time Connection Code; do not generate it or start OAuth.
