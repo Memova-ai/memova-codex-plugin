@@ -1,0 +1,142 @@
+[
+  {
+    "name": "memova-agent-archive",
+    "path": "plugins/memova/skills/memova-agent-archive/SKILL.md",
+    "delta_from_withdrawn_1_6_1": "new",
+    "sha256": "f5acafcc0aded82b7173384f3be02bf2be31ab85b0842a15828c29e40c5539d1",
+    "bundled_files": [
+      "plugins/memova/skills/memova-agent-archive/SKILL.md",
+      "plugins/memova/skills/memova-agent-archive/agents/openai.yaml"
+    ],
+    "shared_dependencies": "plugins/memova/scripts; cross-skill paths retained in full source ZIP",
+    "portal_scan": "NOT_RUN",
+    "host_acceptance": "NOT_RUN"
+  },
+  {
+    "name": "memova-connect",
+    "path": "plugins/memova/skills/memova-connect/SKILL.md",
+    "delta_from_withdrawn_1_6_1": "new",
+    "sha256": "8254a65d2ebe8a9e518fc0be28b0494a3b002e61d2b540812579fdf2b04ac19b",
+    "bundled_files": [
+      "plugins/memova/skills/memova-connect/SKILL.md",
+      "plugins/memova/skills/memova-connect/agents/openai.yaml"
+    ],
+    "shared_dependencies": "plugins/memova/scripts; cross-skill paths retained in full source ZIP",
+    "portal_scan": "NOT_RUN",
+    "host_acceptance": "NOT_RUN"
+  },
+  {
+    "name": "memova-explicit-import",
+    "path": "plugins/memova/skills/memova-explicit-import/SKILL.md",
+    "delta_from_withdrawn_1_6_1": "changed",
+    "sha256": "a9846d3d749b53a822c2b955cb75974dee16bfea84c33be3e2aba4170b6a318e",
+    "bundled_files": [
+      "plugins/memova/skills/memova-explicit-import/SKILL.md",
+      "plugins/memova/skills/memova-explicit-import/agents/openai.yaml",
+      "plugins/memova/skills/memova-explicit-import/scripts/preview_selected_import.py"
+    ],
+    "shared_dependencies": "plugins/memova/scripts; cross-skill paths retained in full source ZIP",
+    "portal_scan": "NOT_RUN",
+    "host_acceptance": "NOT_RUN"
+  },
+  {
+    "name": "memova-knowledge",
+    "path": "plugins/memova/skills/memova-knowledge/SKILL.md",
+    "delta_from_withdrawn_1_6_1": "changed",
+    "sha256": "3666a3065557553b206136f2f751e5cce01708f56f44f79a1ffbc5487a390d89",
+    "bundled_files": [
+      "plugins/memova/skills/memova-knowledge/SKILL.md",
+      "plugins/memova/skills/memova-knowledge/agents/openai.yaml"
+    ],
+    "shared_dependencies": "plugins/memova/scripts; cross-skill paths retained in full source ZIP",
+    "portal_scan": "NOT_RUN",
+    "host_acceptance": "NOT_RUN"
+  },
+  {
+    "name": "memova-menu",
+    "path": "plugins/memova/skills/memova-menu/SKILL.md",
+    "delta_from_withdrawn_1_6_1": "changed",
+    "sha256": "b27cfeb4e2f9e03d478f0a91f24347d9ef3f1172b97ba5a77c8ec3814255741c",
+    "bundled_files": [
+      "plugins/memova/skills/memova-menu/SKILL.md",
+      "plugins/memova/skills/memova-menu/agents/openai.yaml"
+    ],
+    "shared_dependencies": "plugins/memova/scripts; cross-skill paths retained in full source ZIP",
+    "portal_scan": "NOT_RUN",
+    "host_acceptance": "NOT_RUN"
+  },
+  {
+    "name": "memova-personal-manual",
+    "path": "plugins/memova/skills/memova-personal-manual/SKILL.md",
+    "delta_from_withdrawn_1_6_1": "new",
+    "sha256": "5e2ee8b0ae48ac8a469dc61de899e515e0356f48115cd7fa6371cb7a6d2f9b7d",
+    "bundled_files": [
+      "plugins/memova/skills/memova-personal-manual/SKILL.md",
+      "plugins/memova/skills/memova-personal-manual/agents/openai.yaml",
+      "plugins/memova/skills/memova-personal-manual/references/local-artifacts.md",
+      "plugins/memova/skills/memova-personal-manual/scripts/prepare_personal_manual.py"
+    ],
+    "shared_dependencies": "plugins/memova/scripts; cross-skill paths retained in full source ZIP",
+    "portal_scan": "NOT_RUN",
+    "host_acceptance": "NOT_RUN"
+  },
+  {
+    "name": "memova-resource-access",
+    "path": "plugins/memova/skills/memova-resource-access/SKILL.md",
+    "delta_from_withdrawn_1_6_1": "new",
+    "sha256": "2ade0bba95ff8c2aba99351e1d346603563888447e81fd14627ad4035b96863d",
+    "bundled_files": [
+      "plugins/memova/skills/memova-resource-access/SKILL.md",
+      "plugins/memova/skills/memova-resource-access/agents/openai.yaml"
+    ],
+    "shared_dependencies": "plugins/memova/scripts; cross-skill paths retained in full source ZIP",
+    "portal_scan": "NOT_RUN",
+    "host_acceptance": "NOT_RUN"
+  },
+  {
+    "name": "memova-vault-diagnose",
+    "path": "plugins/memova/skills/memova-vault-diagnose/SKILL.md",
+    "delta_from_withdrawn_1_6_1": "changed",
+    "sha256": "b4c38e582baeb21e69ec8b04d5efa690739989a38c82468d1d3ad19465203a34",
+    "bundled_files": [
+      "plugins/memova/skills/memova-vault-diagnose/SKILL.md",
+      "plugins/memova/skills/memova-vault-diagnose/agents/openai.yaml"
+    ],
+    "shared_dependencies": "plugins/memova/scripts; cross-skill paths retained in full source ZIP",
+    "portal_scan": "NOT_RUN",
+    "host_acceptance": "NOT_RUN"
+  },
+  {
+    "name": "memova-vault-setup",
+    "path": "plugins/memova/skills/memova-vault-setup/SKILL.md",
+    "delta_from_withdrawn_1_6_1": "changed",
+    "sha256": "3c4410dac28396080939f749581e42a7ce67fa704975f7d4b19aa8eee31d4537",
+    "bundled_files": [
+      "plugins/memova/skills/memova-vault-setup/SKILL.md",
+      "plugins/memova/skills/memova-vault-setup/agents/openai.yaml",
+      "plugins/memova/skills/memova-vault-setup/scripts/create_memova_vault.py",
+      "plugins/memova/skills/memova-vault-setup/scripts/diagnose_memova_vault.py",
+      "plugins/memova/skills/memova-vault-setup/scripts/find_vault_locations.py",
+      "plugins/memova/skills/memova-vault-setup/scripts/inspect_vault.py",
+      "plugins/memova/skills/memova-vault-setup/scripts/memova_vault_lib.py",
+      "plugins/memova/skills/memova-vault-setup/scripts/setup_fixture_harness.py",
+      "plugins/memova/skills/memova-vault-setup/scripts/validate_memova_vault.py"
+    ],
+    "shared_dependencies": "plugins/memova/scripts; cross-skill paths retained in full source ZIP",
+    "portal_scan": "NOT_RUN",
+    "host_acceptance": "NOT_RUN"
+  },
+  {
+    "name": "memova-workflow",
+    "path": "plugins/memova/skills/memova-workflow/SKILL.md",
+    "delta_from_withdrawn_1_6_1": "changed",
+    "sha256": "7b98b4534cdec921a6b82f422f445a46d3a4f78cbb4feeabdfee1b3b924cb264",
+    "bundled_files": [
+      "plugins/memova/skills/memova-workflow/SKILL.md",
+      "plugins/memova/skills/memova-workflow/agents/openai.yaml"
+    ],
+    "shared_dependencies": "plugins/memova/scripts; cross-skill paths retained in full source ZIP",
+    "portal_scan": "NOT_RUN",
+    "host_acceptance": "NOT_RUN"
+  }
+]

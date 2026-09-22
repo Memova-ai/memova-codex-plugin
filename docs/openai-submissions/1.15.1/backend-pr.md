@@ -1,0 +1,5 @@
+MCP unified search discarded V5 citation/revision/refusal metadata, while the menu selected legacy graph-gated routes. This patch preserves an allowlist of evidence fields and routes the menu to `search_notes`, retaining existing scopes and rollout checks. Ordinary note hits remain distinct from V5 evidence.
+
+Tool construction now requires an explicit open-world decision; Personal Manual link publication sets it true. Resource discovery is annotated as a write because unfiltered calls record credential verification. Compatibility metadata advertises Plugin 1.15.1; MCP contract and minimum Plugin version are unchanged.
+
+Validation: 54 focused backend regressions passed, plus seven CI scope rejection/selection cases and two compatibility checks. The audited exact-change CI mapping collects 63 cases; unknown scope/content remains blocked. Compile, Ruff and paid-callsite checks passed. No migrations or gate changes. Production acceptance remains pending deployment; publish Plugin 1.15.1 before advertising it live.

@@ -1,0 +1,34 @@
+{
+  "status": "LOCAL_VALIDATED_NOT_DEPLOYED",
+  "backend_tests": {
+    "passed": 54,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 6.14
+  },
+  "plugin_tests": {
+    "passed": 22,
+    "failed": 0
+  },
+  "total_cases": 76,
+  "full_suite": "NOT_RUN: user-authorized maximum 100 cases",
+  "static_and_budget_checks": "PASS",
+  "plugin_structure": "PASS",
+  "shared_menu_byte_parity": "PASS",
+  "production_calls": 0,
+  "paid_model_calls": 0,
+  "files": {
+    "app/mcp/tools.py": "f0d220d01247b04eb11a421a38f5c4336aa929c244013735748599df013fb61e",
+    "app/mcp/menu_catalog.json": "894363bbecb738df6aa6cea91dac994d381067049d4d866930a065cd1c6945b3",
+    "tests/test_memova_menu.py": "e3fc6954a34ebe8747f494ca7c5a035f9f7fd02d3188907d6dd6b1ae6087bba5",
+    "tests/test_mcp_submission_contracts.py": "a894183c0b87aeedc9fc7124deaef597c28cb5a9c6396f9e7a6511d450c3d82c"
+  },
+  "plugin_files": {
+    "README.md": "c03ca283173816e1f40a891454db3fd633ce1d7e949c5af5847b90994cba8818",
+    "plugins/memova/menu_catalog.json": "894363bbecb738df6aa6cea91dac994d381067049d4d866930a065cd1c6945b3",
+    "plugins/memova/skills/memova-knowledge/SKILL.md": "08da7d9d3589124da1d35524587ef2080c2455d191bb86ee4ed528695bcdf083",
+    "plugins/memova/skills/memova-menu/SKILL.md": "88e9ce6c3a261ae5e6f633228e6f7188d2c7884abf15efc8941f417d1d23fc5e",
+    "plugins/memova/skills/memova-resource-access/SKILL.md": "360b19832d8891f20b05a0ec0d6eca849b4afb80915909edc7596fc335b932b3",
+    "tests/test_memova_menu.py": "4927389332feb4ff8fe39a219eab1df040138c39e709264f615249cac57ad0a1"
+  }
+}

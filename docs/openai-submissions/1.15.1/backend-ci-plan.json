@@ -1,0 +1,33 @@
+{
+  "changed_paths": [
+    "app/mcp/menu_catalog.json",
+    "app/mcp/plugin_compatibility.py",
+    "app/mcp/tools.py",
+    "scripts/ci/mcp_submission_plan.py",
+    "scripts/ci/select_pr_tests.py",
+    "tests/test_mcp_protocol.py",
+    "tests/test_mcp_submission_contracts.py",
+    "tests/test_mcp_submission_plan.py",
+    "tests/test_memova_menu.py"
+  ],
+  "digest": "sha256:3a6da2727291c4d026a09c0ed3c22174e6448981777372456ad53bfc61b8d9a0",
+  "profile": "targeted",
+  "reasons": [
+    "reviewed_mcp_submission_contracts"
+  ],
+  "tests": [
+    "tests/test_mcp_submission_contracts.py",
+    "tests/test_memova_menu.py",
+    "tests/test_mcp_connection_status.py",
+    "tests/test_mcp_submission_plan.py",
+    "tests/test_health.py::test_plugin_compatibility_metadata_is_public_and_cacheable",
+    "tests/test_mcp_protocol.py::test_mcp_initialize_and_tools_list_json_rpc",
+    "tests/test_mcp_protocol.py::test_mcp_tool_catalog_contains_beta_automation_tools",
+    "tests/test_mcp_protocol.py::test_public_mcp_catalog_preserves_versioned_plugin_contracts",
+    "tests/test_mcp_protocol.py::test_public_mcp_discovery_hides_rollout_disabled_tools",
+    "tests/test_mcp_protocol.py::test_authenticated_mcp_discovery_matches_rollout_and_oauth_scope",
+    "tests/test_mcp_protocol.py::test_tools_call_rejects_tool_hidden_by_runtime_discovery",
+    "tests/test_unified_search.py::test_mcp_search_requires_knowledge_scope_for_graph_provider"
+  ],
+  "version": 16
+}
